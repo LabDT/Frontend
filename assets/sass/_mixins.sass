@@ -1,0 +1,11 @@
+@use "./_colors" as *
+
+@mixin gradient($colorA, $colorB, $angle)
+    $rgba-colorA: if(type-of($colorA) == 'color', rgba($colorA, 1), $colorA)
+    $rgba-colorB: if(type-of($colorB) == 'color', rgba($colorB, 1), $colorB)
+
+    background: $colorA
+    background: -moz-linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
+    background: -webkit-linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
+    background: linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{hex($colorA)}", endColorstr="#{hex($colorB)}", GradientType=1)

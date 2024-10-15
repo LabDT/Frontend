@@ -4,7 +4,10 @@
   "include": [
     "env.d.ts"
   ],
-    "compilerOptions": {
-      "forceConsistentCasingInFileNames": true
-    }
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "@nuxtjs/i18n"
+    ]
+  },
 }
