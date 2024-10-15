@@ -4,7 +4,7 @@
       <div class="content">
         <p class="copyright">{{ t('footer.copyright', {
           year: new Date().getFullYear(), 
-          version: appVersion,
+          version: '1.0.0',
         }) }}</p>
       </div>
     </footer>
@@ -13,14 +13,10 @@
 
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
-import { useRuntimeConfig } from 'nuxt/app';
 
 const { t } = useI18n({
   useScope: 'local'
 });
-
-const config = useRuntimeConfig();
-const appVersion = config.public.appVersion;
 </script>
 
 <style lang="sass" scoped>

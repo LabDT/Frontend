@@ -5,12 +5,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   compatibilityDate: "2024-10-15",
 
-  runtimeConfig: {
-    public: {
-      appVersion: process.env.NUXT_PUBLIC_APP_VERSION
-    }
-  },
-
   vite: {
     css: {
       preprocessorOptions: {
@@ -39,7 +33,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxtjs/i18n'],
+  modules: process.env.HISTOIRE ? [] : ['@nuxtjs/i18n'],
 
   // @ts-ignore
   i18n: {

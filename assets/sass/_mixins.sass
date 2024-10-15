@@ -9,3 +9,9 @@
     background: -webkit-linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
     background: linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{hex($colorA)}", endColorstr="#{hex($colorB)}", GradientType=1)
+
+@mixin drop-shadow-soft
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+
+@mixin outline
+    outline: 3px solid $color-selection

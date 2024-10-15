@@ -82,11 +82,15 @@ const variantClass = computed(() => {
 
 <style lang="sass" scoped>
 .button
+  @include drop-shadow-soft
   position: relative
   padding: 24px 48px
   cursor: pointer
   overflow: hidden
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+  margin: 5px
+
+  &:focus
+    @include outline
 
 .button-big
   @include font-primary(500)
