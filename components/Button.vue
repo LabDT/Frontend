@@ -86,9 +86,7 @@ const variantClass = computed(() => {
   padding: 24px 48px
   cursor: pointer
   overflow: hidden
-
-  &:active
-    transform: scale(0.98)
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
 
 .button-big
   @include font-primary(500)
@@ -105,6 +103,26 @@ const variantClass = computed(() => {
   background-color: transparent
   border: 2px solid white
   border-radius: 5px
+  transition: color 400ms ease
+  
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: white
+    transform: scaleX(0)
+    transform-origin: center
+    transition: transform 400ms ease
+    z-index: -1
+
+  &:hover:before
+    transform: scaleX(1)
+
+  &:hover
+    color: black
 
 .ripple
   position: absolute
@@ -121,8 +139,11 @@ const variantClass = computed(() => {
   transition: transform 600ms ease, opacity 600ms ease
 
 .button-big .ripple
-  background-color: $color-secondary
+  background-color: $color-primary-highlight
 
 .button-header .ripple
   background-color: #FFFFFF44
+
+.button-header:hover .ripple
+  background-color: #00000022
 </style>
