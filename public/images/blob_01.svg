@@ -1,0 +1,107 @@
+<svg width="1124" height="651" viewBox="0 0 1124 651" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M31 155C-2.39626 118.821 -15 73 25 9.5L31 -0.5H1124V651C1049.83 635.167 895 571.5 815 468.5C716.649 341.873 529 442 399 431.5C284.566 422.257 244.765 315.732 181 238C128.5 174 72.9999 200.5 31 155Z" fill="url(#paint0_linear_648_284)"/>
+<g clip-path="url(#clip0_648_284)">
+<rect x="1037" y="431" width="4" height="32" fill="#FF6F61"/>
+<rect x="1055" y="445" width="4" height="32" transform="rotate(90 1055 445)" fill="#FF6F61"/>
+</g>
+<g clip-path="url(#clip1_648_284)">
+<rect x="1005" y="17" width="4" height="32" fill="#FF6F61"/>
+<rect x="1023" y="31" width="4" height="32" transform="rotate(90 1023 31)" fill="#FF6F61"/>
+</g>
+<g clip-path="url(#clip2_648_284)">
+<rect x="264" y="138" width="4" height="32" fill="#FFA862"/>
+<rect x="282" y="152" width="4" height="32" transform="rotate(90 282 152)" fill="#FFA862"/>
+</g>
+<g clip-path="url(#clip3_648_284)">
+<rect x="460" y="49" width="4" height="32" fill="#FFA862"/>
+<rect x="478" y="63" width="4" height="32" transform="rotate(90 478 63)" fill="#FFA862"/>
+</g>
+<g clip-path="url(#clip4_648_284)">
+<rect x="608" y="289" width="4" height="32" fill="#FFA862"/>
+<rect x="626" y="303" width="4" height="32" transform="rotate(90 626 303)" fill="#FFA862"/>
+</g>
+<g clip-path="url(#clip5_648_284)">
+<rect x="386.899" y="262.728" width="4" height="32" transform="rotate(-45 386.899 262.728)" fill="#FFA862"/>
+<rect x="409.527" y="259.9" width="4" height="32" transform="rotate(45 409.527 259.9)" fill="#FFA862"/>
+</g>
+<g clip-path="url(#clip6_648_284)">
+<rect x="65.8994" y="93.728" width="4" height="32" transform="rotate(-45 65.8994 93.728)" fill="#FFA862"/>
+<rect x="88.5268" y="90.8995" width="4" height="32" transform="rotate(45 88.5268 90.8995)" fill="#FFA862"/>
+</g>
+<g clip-path="url(#clip7_648_284)">
+<rect x="544.899" y="170.728" width="4" height="32" transform="rotate(-45 544.899 170.728)" fill="#FFA862"/>
+<rect x="567.527" y="167.9" width="4" height="32" transform="rotate(45 567.527 167.9)" fill="#FFA862"/>
+</g>
+<g clip-path="url(#clip8_648_284)">
+<rect x="667.899" y="45.728" width="4" height="32" transform="rotate(-45 667.899 45.728)" fill="#FFA862"/>
+<rect x="690.527" y="42.8995" width="4" height="32" transform="rotate(45 690.527 42.8995)" fill="#FFA862"/>
+</g>
+<g clip-path="url(#clip9_648_284)">
+<rect x="804" y="329" width="4" height="32" fill="#FF6F61"/>
+<rect x="822" y="343" width="4" height="32" transform="rotate(90 822 343)" fill="#FF6F61"/>
+</g>
+<g clip-path="url(#clip10_648_284)">
+<rect x="1037" y="233" width="4" height="32" fill="#FF6F61"/>
+<rect x="1055" y="247" width="4" height="32" transform="rotate(90 1055 247)" fill="#FF6F61"/>
+</g>
+<g clip-path="url(#clip11_648_284)">
+<rect x="737.272" y="183.101" width="4" height="32" transform="rotate(-45 737.272 183.101)" fill="#FF6F61"/>
+<rect x="759.899" y="180.272" width="4" height="32" transform="rotate(45 759.899 180.272)" fill="#FF6F61"/>
+</g>
+<g clip-path="url(#clip12_648_284)">
+<rect x="886.899" y="125.728" width="4" height="32" transform="rotate(-45 886.899 125.728)" fill="#FF6F61"/>
+<rect x="909.527" y="122.9" width="4" height="32" transform="rotate(45 909.527 122.9)" fill="#FF6F61"/>
+</g>
+<g clip-path="url(#clip13_648_284)">
+<rect x="924.899" y="275.728" width="4" height="32" transform="rotate(-45 924.899 275.728)" fill="#FF6F61"/>
+<rect x="947.527" y="272.9" width="4" height="32" transform="rotate(45 947.527 272.9)" fill="#FF6F61"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_648_284" x1="44.9999" y1="7.50002" x2="1136.5" y2="661" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF6F61"/>
+<stop offset="1" stop-color="#FFAB61"/>
+</linearGradient>
+<clipPath id="clip0_648_284">
+<rect width="32" height="32" fill="white" transform="translate(1023 431)"/>
+</clipPath>
+<clipPath id="clip1_648_284">
+<rect width="32" height="32" fill="white" transform="translate(991 17)"/>
+</clipPath>
+<clipPath id="clip2_648_284">
+<rect width="32" height="32" fill="white" transform="translate(250 138)"/>
+</clipPath>
+<clipPath id="clip3_648_284">
+<rect width="32" height="32" fill="white" transform="translate(446 49)"/>
+</clipPath>
+<clipPath id="clip4_648_284">
+<rect width="32" height="32" fill="white" transform="translate(594 289)"/>
+</clipPath>
+<clipPath id="clip5_648_284">
+<rect width="32" height="32" fill="white" transform="translate(377 272.627) rotate(-45)"/>
+</clipPath>
+<clipPath id="clip6_648_284">
+<rect width="32" height="32" fill="white" transform="translate(55.9999 103.627) rotate(-45)"/>
+</clipPath>
+<clipPath id="clip7_648_284">
+<rect width="32" height="32" fill="white" transform="translate(535 180.627) rotate(-45)"/>
+</clipPath>
+<clipPath id="clip8_648_284">
+<rect width="32" height="32" fill="white" transform="translate(658 55.6274) rotate(-45)"/>
+</clipPath>
+<clipPath id="clip9_648_284">
+<rect width="32" height="32" fill="white" transform="translate(790 329)"/>
+</clipPath>
+<clipPath id="clip10_648_284">
+<rect width="32" height="32" fill="white" transform="translate(1023 233)"/>
+</clipPath>
+<clipPath id="clip11_648_284">
+<rect width="32" height="32" fill="white" transform="translate(727.372 193) rotate(-45)"/>
+</clipPath>
+<clipPath id="clip12_648_284">
+<rect width="32" height="32" fill="white" transform="translate(877 135.627) rotate(-45)"/>
+</clipPath>
+<clipPath id="clip13_648_284">
+<rect width="32" height="32" fill="white" transform="translate(915 285.627) rotate(-45)"/>
+</clipPath>
+</defs>
+</svg>
