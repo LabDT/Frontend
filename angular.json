@@ -100,7 +100,7 @@
               }
             ],
             "styles": [
-              "src/styles.sass"
+              "src/sass/styles.sass"
             ],
             "scripts": []
           }

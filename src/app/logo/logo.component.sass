@@ -1,0 +1,24 @@
+@use "../../sass/colors" as *
+@use "../../sass/fonts" as *
+@use "../../sass/mixins" as *
+
+div
+  +font-primary(900)
+  padding: 16px 12px
+  display: inline-flex
+  width: fit-content !important
+  height: fit-content !important
+  font-size: 16px
+  color: $color-primary
+  text-decoration: none
+  display: inline-flex
+  align-items: center
+  gap: 12px
+
+  &:hover
+    cursor: pointer
+    color: $color-secondary
+
+div img
+  width: 32px
+  height: 32px

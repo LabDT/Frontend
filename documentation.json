@@ -180,6 +180,55 @@
                 }
             },
             "templateData": "<button\r\n  type=\"button\"\r\n  (click)=\"onClick.emit($event)\"\r\n  [ngClass]=\"classes\"\r\n>\r\n  <span>{{ label }}</span>\r\n</button>\r\n"
+        },
+        {
+            "name": "LogoComponent",
+            "id": "component-LogoComponent-8c51ab9e558a3aa0754b906c3680b300de31d66bb48a358be4192effbb33b31f76504b239266c5f0b3b69345e3aa001bdb1d7be8e54126c2a57296ea6bbe9569",
+            "file": "src/app/logo/logo.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-logo",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./logo.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional click handler",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 13,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-logo',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './logo.component.html',\r\n  styleUrl: './logo.component.sass'\r\n})\r\nexport class LogoComponent {\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n}\r\n",
+            "styleUrl": "./logo.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div>\r\n  <a href=\"#\">\r\n    <img src=\"/logo.svg\" alt=\"LabDT Logo\">\r\n    LabDT\r\n  </a>\r\n</div>\r\n"
         }
     ],
     "modules": [],
@@ -283,7 +332,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 13,
+        "count": 18,
         "status": "low",
         "files": [
             {
@@ -333,6 +382,15 @@
                 "coveragePercent": 80,
                 "coverageCount": "4/5",
                 "status": "very-good"
+            },
+            {
+                "filePath": "src/app/logo/logo.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LogoComponent",
+                "coveragePercent": 50,
+                "coverageCount": "1/2",
+                "status": "medium"
             },
             {
                 "filePath": "src/main.server.ts",
