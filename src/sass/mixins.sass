@@ -1,0 +1,36 @@
+@use "./colors" as *
+
+@mixin gradient($colorA, $colorB, $angle)
+  $rgba-colorA: if(type-of($colorA) == 'color', rgba($colorA, 1), $colorA)
+  $rgba-colorB: if(type-of($colorB) == 'color', rgba($colorB, 1), $colorB)
+
+  background: $colorA
+  background: -moz-linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
+  background: -webkit-linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
+  background: linear-gradient($angle, $rgba-colorA 0%, $rgba-colorB 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{hex($colorA)}", endColorstr="#{hex($colorB)}", GradientType=1)
+
+@mixin drop-shadow-soft
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+
+@mixin outline
+  outline: 3px solid $color-selection
+
+@mixin outline-text
+  text-shadow: 1px  1px 0 $color-selection, -1px -1px 0 $color-selection, 1px -1px 0 $color-selection, -1px  1px 0 $color-selection
+
+@mixin responsive-container($small, $medium, $large, $xlarge, $xxlarge)
+  width: $small
+  margin: 0 auto
+
+  @media (min-width: 768px)
+    width: $medium
+
+  @media (min-width: 1024px)
+    width: $large
+
+  @media (min-width: 1280px)
+    width: $xlarge
+
+  @media (min-width: 1600px)
+    width: $xxlarge
