@@ -236,6 +236,53 @@
             "templateData": "<button\r\n  type=\"button\"\r\n  (click)=\"onClick.emit($event)\"\r\n  [ngClass]=\"classes\"\r\n>\r\n  <span>{{ label }}</span>\r\n</button>\r\n"
         },
         {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-8e2d545368659facd1bacba535ba7a24faca6ee692979d1dbe974412165aefa6b1a9452a027d174e207b7f41a81c3aaac39a7393010d67796ae3da13b841dc3a",
+            "file": "src/app/components/header/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-header",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./header.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "LogoComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { LogoComponent } from \"../logo/logo.component\";\r\nimport { ButtonComponent } from \"../button/button.component\";\r\n\r\n@Component({\r\n  selector: 'app-header',\r\n  standalone: true,\r\n  imports: [LogoComponent, ButtonComponent],\r\n  templateUrl: './header.component.html',\r\n  styleUrl: './header.component.sass'\r\n})\r\nexport class HeaderComponent {\r\n\r\n}\r\n",
+            "styleUrl": "./header.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div>\r\n  <div class=\"logo\">\r\n    <app-logo></app-logo>\r\n  </div>\r\n  <div class=\"navbar\">\r\n    <app-button [label]=\"'Home'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Design Thinking'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Sign In'\" [variant]=\"'header'\"></app-button>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
             "name": "InputComponent",
             "id": "component-InputComponent-3371026e4c72d89d18ac08e5f2609b086a10c3f52f0c4e72361dc65d05749d175f6dd2d6edafff111179fc46911c8b8e3ad6e0c1b2a9d9388e124df5836703e6",
             "file": "src/app/components/input/input.component.ts",
@@ -643,7 +690,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 15,
+        "count": 14,
         "status": "low",
         "files": [
             {
@@ -693,6 +740,15 @@
                 "coveragePercent": 80,
                 "coverageCount": "4/5",
                 "status": "very-good"
+            },
+            {
+                "filePath": "src/app/components/header/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
             },
             {
                 "filePath": "src/app/components/input/input.component.ts",
