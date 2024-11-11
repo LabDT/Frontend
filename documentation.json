@@ -182,6 +182,115 @@
             "templateData": "<button\r\n  type=\"button\"\r\n  (click)=\"onClick.emit($event)\"\r\n  [ngClass]=\"classes\"\r\n>\r\n  <span>{{ label }}</span>\r\n</button>\r\n"
         },
         {
+            "name": "InputComponent",
+            "id": "component-InputComponent-3371026e4c72d89d18ac08e5f2609b086a10c3f52f0c4e72361dc65d05749d175f6dd2d6edafff111179fc46911c8b8e3ad6e0c1b2a9d9388e124df5836703e6",
+            "file": "src/app/input/input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-input",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional label",
+                    "description": "<p>Optional label</p>\n",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional placeholder",
+                    "description": "<p>Optional placeholder</p>\n",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInput variant",
+                    "description": "<p>Input variant</p>\n",
+                    "line": 15,
+                    "type": "\"text\" | \"email\" | \"password\" | \"search\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "inputId",
+                    "defaultValue": "`input-${uuidv4()}`",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { v4 as uuidv4 } from 'uuid';\r\n\r\n@Component({\r\n  selector: 'app-input',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './input.component.html',\r\n  styleUrl: './input.component.sass'\r\n})\r\nexport class InputComponent {\r\n  /** Input variant */\r\n  @Input()\r\n  variant: 'text' | 'email' | 'password'| 'search' = 'text';\r\n\r\n  /** Optional label */\r\n  @Input()\r\n  label: string = '';\r\n\r\n  /** Optional placeholder */\r\n  @Input()\r\n  placeholder: string = '';\r\n\r\n  // Uniquely generated ID for the instance\r\n  inputId: string = `input-${uuidv4()}`;\r\n\r\n  public get classes(): string[] {\r\n    return ['labdt-input']\r\n  }\r\n\r\n  public get type(): string {\r\n    switch (this.variant) {\r\n      case 'text':\r\n        return 'text';\r\n      case 'email':\r\n        return 'email';\r\n      case 'password':\r\n        return 'password';\r\n      case 'search':\r\n        return 'text';\r\n      default:\r\n        return 'text';\r\n    }\r\n  }\r\n}\r\n",
+            "styleUrl": "./input.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 28
+                    }
+                },
+                "type": {
+                    "name": "type",
+                    "getSignature": {
+                        "name": "type",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 32
+                    }
+                }
+            },
+            "templateData": "<div [ngClass]=\"classes\">\r\n  <div class=\"sub-container\">\r\n    <label *ngIf=\"label\" [for]=\"inputId\">{{ label }}</label>\r\n    <input [id]=\"inputId\" [placeholder]=\"placeholder\" [type]=\"type\">\r\n  </div>\r\n</div>\r\n"
+        },
+        {
             "name": "LogoComponent",
             "id": "component-LogoComponent-8c51ab9e558a3aa0754b906c3680b300de31d66bb48a358be4192effbb33b31f76504b239266c5f0b3b69345e3aa001bdb1d7be8e54126c2a57296ea6bbe9569",
             "file": "src/app/logo/logo.component.ts",
@@ -228,7 +337,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div>\r\n  <a href=\"#\">\r\n    <img src=\"/logo.svg\" alt=\"LabDT Logo\">\r\n    LabDT\r\n  </a>\r\n</div>\r\n"
+            "templateData": "<div (click)=\"onClick.emit($event)\">\r\n  <img src=\"/logo.svg\" alt=\"LabDT Logo\">\r\n  LabDT\r\n</div>\r\n"
         }
     ],
     "modules": [],
@@ -332,7 +441,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 18,
+        "count": 23,
         "status": "low",
         "files": [
             {
@@ -382,6 +491,15 @@
                 "coveragePercent": 80,
                 "coverageCount": "4/5",
                 "status": "very-good"
+            },
+            {
+                "filePath": "src/app/input/input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "InputComponent",
+                "coveragePercent": 60,
+                "coverageCount": "3/5",
+                "status": "good"
             },
             {
                 "filePath": "src/app/logo/logo.component.ts",

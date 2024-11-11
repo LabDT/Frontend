@@ -1,0 +1,28 @@
+@use "../../sass/colors" as *
+@use "../../sass/fonts" as *
+@use "../../sass/mixins" as *
+
+.labdt-input
+  position: relative
+  display: flex
+  flex-direction: column
+
+.labdt-input label
+  +font-primary(300)
+  margin: 0px 32px
+
+  &:hover
+    cursor: pointer
+
+.labdt-input input
+  +drop-shadow-soft
+  +font-primary(400)
+  padding: 16px 32px
+  border-radius: 32px
+  border: none
+
+  &:active
+    +outline
+
+  &:focus
+    +outline
