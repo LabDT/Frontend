@@ -1,7 +1,69 @@
 {
     "pipes": [],
     "interfaces": [],
-    "injectables": [],
+    "injectables": [
+        {
+            "name": "GoogleSigninService",
+            "id": "injectable-GoogleSigninService-57f608a979bd24c2de795460dd1f8db03f3cce00a8ce575b9d07dab8ed5901011afa8b04767504e14f2a39b129de5a4a9c73a24c25d4b11ee2d0c0c224d9294d",
+            "file": "src/app/google-signin.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "signInWithGoogle",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<SocialUser>",
+                    "typeParameters": [],
+                    "line": 10,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "signOut",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { SocialAuthService, GoogleLoginProvider, SocialUser } from '@abacritt/angularx-social-login';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class GoogleSigninService {\r\n  constructor(private authService: SocialAuthService) { }\r\n\r\n  signInWithGoogle(): Promise<SocialUser> {\r\n    return this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);\r\n  }\r\n\r\n  signOut(): Promise<void> {\r\n    return this.authService.signOut();\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "SocialAuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 7,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "SocialAuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "injectable"
+        }
+    ],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -288,7 +350,92 @@
                     }
                 }
             },
-            "templateData": "<div [ngClass]=\"classes\">\r\n  <div class=\"sub-container\">\r\n    <label *ngIf=\"label\" [for]=\"inputId\">{{ label }}</label>\r\n    <input [id]=\"inputId\" [placeholder]=\"placeholder\" [type]=\"type\">\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [ngClass]=\"classes\">\r\n  <label *ngIf=\"label\" [for]=\"inputId\">{{ label }}</label>\r\n  <input [id]=\"inputId\" [placeholder]=\"placeholder\" [type]=\"type\">\r\n</div>\r\n"
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-743888b55ead52a791330318d2216dd1a489face79d0b1b9d0c33556315cf17209671bbea000f39642a4932a84ecfb02b0436503f95cb90c1e0cead298c98632",
+            "file": "src/app/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "signInWithGoogle",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "signOut",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { GoogleSigninService } from '../google-signin.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n  constructor(private googleSigninService: GoogleSigninService) {}\r\n\r\n  signInWithGoogle(): void {\r\n    this.googleSigninService.signInWithGoogle()\r\n      .then(user => {\r\n        // Handle successful sign-in\r\n        console.log(user);\r\n      })\r\n      .catch(error => {\r\n        // Handle sign-in error\r\n        console.log(error);\r\n      });\r\n  }\r\n\r\n  signOut(): void {\r\n    this.googleSigninService.signOut()\r\n      .then(() => {\r\n        // Handle successful sign-out\r\n        console.log('Signed out successfully');\r\n      })\r\n      .catch(error => {\r\n        // Handle sign-out error\r\n        console.log(error);\r\n      });\r\n  }\r\n}\r\n",
+            "styleUrl": "./login.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "googleSigninService",
+                        "type": "GoogleSigninService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "googleSigninService",
+                        "type": "GoogleSigninService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<button (click)=\"signInWithGoogle()\">Sign in with Google</button>\r\n<button (click)=\"signOut()\">Sign out</button>\r\n"
         },
         {
             "name": "LogoComponent",
@@ -441,7 +588,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 23,
+        "count": 19,
         "status": "low",
         "files": [
             {
@@ -493,6 +640,15 @@
                 "status": "very-good"
             },
             {
+                "filePath": "src/app/google-signin.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "GoogleSigninService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/input/input.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -500,6 +656,15 @@
                 "coveragePercent": 60,
                 "coverageCount": "3/5",
                 "status": "good"
+            },
+            {
+                "filePath": "src/app/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
             },
             {
                 "filePath": "src/app/logo/logo.component.ts",
