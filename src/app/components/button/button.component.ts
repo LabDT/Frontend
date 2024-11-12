@@ -39,7 +39,7 @@ export class ButtonComponent {
   onClick = new EventEmitter<Event>();
 
   public get classes(): string[] {
-    let classes = ['labdt-button', this.size, this.variant];
+    let classes = ['button', this.size, this.variant];
     if (this.fill) {
       classes.push('fill');
     }

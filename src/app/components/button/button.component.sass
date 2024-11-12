@@ -2,20 +2,30 @@
 @use "../../../sass/fonts" as *
 @use "../../../sass/mixins" as *
 
-.labdt-button
+.button
   +font-primary(500)
   box-sizing: border-box
-  font-size: 20px
   position: relative
-  padding: 24px 48px
   cursor: pointer
   overflow: hidden
   display: flex
   align-items: center
   justify-content: center
 
+.button.small
+  font-size: 12px
+  padding: 12px 24px
+
+.button.medium
+  font-size: 16px
+  padding: 18px 36px
+
+.button.large
+  font-size: 20px
+  padding: 24px 48px
+
 // Primary variant
-.labdt-button.primary
+.button.primary
   +drop-shadow-soft
   color: white
   background-color: $color-primary
@@ -29,7 +39,7 @@
     background-color: $color-primary-highlight
 
 // Secondary variant
-.labdt-button.secondary
+.button.secondary
   +drop-shadow-soft
   color: white
   background-color: $color-secondary
@@ -43,7 +53,7 @@
     background-color: $color-secondary-highlight
 
 // Light variant
-.labdt-button.light
+.button.light
   +drop-shadow-soft
   color: black
   background-color: $color-light
@@ -57,7 +67,7 @@
     background-color: $color-light-highlight
 
 // Header variant
-.labdt-button.header
+.button.header
   color: white
   background-color: transparent
   border: 2px solid white
@@ -87,11 +97,10 @@
     color: black
 
 // Minimalist variant
-.labdt-button.minimalist
+.button.minimalist
   color: white
   background-color: transparent
   border: none
-  padding: 26px 50px
   border-radius: 5px
 
   &:focus
@@ -100,6 +109,15 @@
   &:hover
     color: $color-secondary-highlight
 
+.button.minimalist.small
+  padding: 14px 26px
+
+.button.minimalist.medium
+  padding: 20px 38px
+
+.button.minimalist.large
+  padding: 26px 50px
+
 // Fill available content
-.labdt-button.fill
+.button.fill
   width: 100%

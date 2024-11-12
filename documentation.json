@@ -708,7 +708,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-06dd9f8657b57ab37d442f044d90e52d9d63c4dd087e73a51705c4df3a13aa63e6a32ba7671f41572c66f67b8e31f2c9783e165428ddebac216a6af6f6691794",
+            "id": "component-LoginComponent-b6cb7a21b224e72bdf84ab9fec7974cc41eea21bec3c17b489afe18e43ed9754146f0a105ae9d6890619cc1e4e2ad349bafe74bb63c9adf68f2649af6960a2d0",
             "file": "src/app/components/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -740,7 +740,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -761,7 +761,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 14,
+                    "line": 13,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -771,7 +771,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 29,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -785,16 +785,12 @@
                 {
                     "name": "GoogleSigninButtonModule",
                     "type": "module"
-                },
-                {
-                    "name": "ButtonComponent",
-                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';\r\nimport { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\nimport { ButtonComponent } from \"../button/button.component\";\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [GoogleSigninButtonModule, ButtonComponent],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleLoginButton();\r\n  }\r\n\r\n  // Render Google's login button\r\n  renderGoogleLoginButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"buttonDiv\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"400\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';\r\nimport { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [GoogleSigninButtonModule],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleLoginButton();\r\n  }\r\n\r\n  // Render Google's login button\r\n  renderGoogleLoginButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"buttonDiv\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"400\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n  }\r\n}\r\n",
             "styleUrl": "./login.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
