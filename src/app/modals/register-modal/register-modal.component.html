@@ -5,7 +5,7 @@
 >
   <app-logo></app-logo>
   <h1 class="header">
-    Log in to continue
+    Sign up to continue
   </h1>
   <div class="expander">
     <app-input
@@ -20,13 +20,16 @@
       [label]="'Password'"
     ></app-input>
   </div>
-  <div class="password-forgot">
-    Forgot your password?
+  <div class="expander">
+    <app-input
+      [variant]="'password'"
+      [label]="'Password confirmation'"
+    ></app-input>
   </div>
   <div class="expander">
     <app-button
       [variant]="'primary'"
-      [label]="'Log In'"
+      [label]="'Sign Up'"
       [fill]="true"
     ></app-button>
   </div>
@@ -34,7 +37,7 @@
     OR
   </span>
   <div class="expander">
-    <app-login></app-login>
+    <app-register></app-register>
   </div>
   <div class="expander">
     <p class="tos">
@@ -43,8 +46,8 @@
     <p class="tos">
        <p>
     <hr>
-    <p class="sign-up" (click)="openRegisterModal()">
-      Not on LabDT yet? Sign up
+    <p class="sign-up" (click)="openLoginModal()">
+      Already on LabDT? Sign in
     </p>
   </div>
 </app-base-modal>

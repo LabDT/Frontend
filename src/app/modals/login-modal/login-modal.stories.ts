@@ -12,6 +12,6 @@ type Story = StoryObj<LoginModalComponent>;
 
 export const Default: Story = {
   args: {
-    isActive: true,
+    isActive: false,
   },
 };

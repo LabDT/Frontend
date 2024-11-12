@@ -7,6 +7,7 @@ import { ButtonComponent } from "../../components/button/button.component";
 import { Subscription } from 'rxjs';
 import { LoginModalService } from '../../services/login-modal.service';
 import { LoginComponent } from "../../components/login/login.component";
+import { RegisterModalService } from '../../services/register-modal.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -22,16 +23,15 @@ export class LoginModalComponent {
 
   private subscription: Subscription = new Subscription;
 
-  constructor(private loginModalService: LoginModalService) { }
+  constructor(
+    private loginModalService: LoginModalService,
+    private registerModalService: RegisterModalService,
+  ) { }
 
   ngOnInit() {
     this.subscription = this.loginModalService.isActive$.subscribe(
       isActive => this.isActive = isActive
     )
-
-    if (this.isActive) {
-      this.loginModalService.open();
-    }
   }
 
   ngOnDestroy() {
@@ -42,5 +42,10 @@ export class LoginModalComponent {
 
   closeModal() {
     this.loginModalService.close();
+  }
+
+  openRegisterModal() {
+    this.closeModal();
+    this.registerModalService.open();
   }
 }
