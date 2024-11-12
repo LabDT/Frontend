@@ -37,7 +37,7 @@ export class LoginComponent {
           text: "continue_with",
           size: "large",
           logo_alignment: "left",
-          width: "400"
+          width: "360"
         }
       );
     }
