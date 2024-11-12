@@ -113,11 +113,113 @@
                 ]
             },
             "extends": [],
-            "templateData": "<app-login></app-login>\r\n"
+            "templateData": "<header></header>\r\n<router-outlet></router-outlet>\r\n<footer></footer>\r\n"
+        },
+        {
+            "name": "BaseModalComponent",
+            "id": "component-BaseModalComponent-9e0bc92d7a610de3a7bc9dc9f02320f4aea35bdd4e60b54d3cb576f9090db5f0391cb684da0f7f674174e12c3606ac3f8df1b179e4140cb7ddcad5d7c81a52b4",
+            "file": "src/app/modals/base-modal/base-modal.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-base-modal",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./base-modal.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "cancelButton",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nShould it have a cancel button?",
+                    "description": "<p>Should it have a cancel button?</p>\n",
+                    "line": 23,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "closeButton",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nShould it have a close button?",
+                    "description": "<p>Should it have a close button?</p>\n",
+                    "line": 15,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "okButton",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nShould it have an ok button?",
+                    "description": "<p>Should it have an ok button?</p>\n",
+                    "line": 19,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCancel",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional cancel handler",
+                    "description": "<p>Optional cancel handler</p>\n",
+                    "line": 31,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onOk",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional ok handler",
+                    "description": "<p>Optional ok handler</p>\n",
+                    "line": 27,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { ButtonComponent } from \"../../components/button/button.component\";\r\n\r\n@Component({\r\n  selector: 'app-base-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, ButtonComponent],\r\n  templateUrl: './base-modal.component.html',\r\n  styleUrl: './base-modal.component.sass'\r\n})\r\nexport class BaseModalComponent {\r\n  /** Should it have a close button? */\r\n  @Input()\r\n  closeButton: boolean = false;\r\n\r\n  /** Should it have an ok button? */\r\n  @Input()\r\n  okButton: boolean = false;\r\n\r\n  /** Should it have a cancel button? */\r\n  @Input()\r\n  cancelButton: boolean = false;\r\n\r\n  /** Optional ok handler */\r\n  @Output()\r\n  onOk = new EventEmitter<Event>();\r\n\r\n  /** Optional cancel handler */\r\n  @Output()\r\n  onCancel = new EventEmitter<Event>();\r\n}\r\n",
+            "styleUrl": "./base-modal.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div>\r\n  <div>\r\n    <div *ngIf=\"closeButton\" class=\"close\"></div>\r\n    <ng-content></ng-content>\r\n    <div *ngIf=\"cancelButton || okButton\" class=\"interactions\">\r\n      <div>\r\n        <app-button [label]=\"'cancel'\"></app-button>\r\n      </div>\r\n      <div>\r\n        <app-button [label]=\"'ok'\"></app-button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-9fe1795676661668818003c4f9eccbf92c40c26b2c4bf1c628728119d8904f26fb17e9612777e51890fe064398073c1c1c17a18634b908e4b5773d5d091c2816",
+            "id": "component-ButtonComponent-978b9572ee3bf8185e2bfdd4034d2ac61d0b86badfd92ffeae6b05f63d18e61e86e8c9ab7c7dae975c3b66f87e79c36ffed2363cb54e3d3df6056d9f8fb49a0e",
             "file": "src/app/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -134,22 +236,33 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
+                    "name": "fill",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nFill all available content with the button",
+                    "description": "<p>Fill all available content with the button</p>\n",
+                    "line": 22,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
                     "name": "label",
                     "defaultValue": "'Button'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 608,
-                            "end": 622,
+                            "pos": 701,
+                            "end": 715,
                             "kind": 327,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 609,
-                                "end": 617,
+                                "pos": 702,
+                                "end": 710,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -161,7 +274,7 @@
                     ],
                     "rawdescription": "\n\nButton contents\n\n",
                     "description": "<p>Button contents</p>\n",
-                    "line": 26,
+                    "line": 30,
                     "type": "string",
                     "decorators": []
                 },
@@ -196,7 +309,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional click handler",
                     "description": "<p>Optional click handler</p>\n",
-                    "line": 30,
+                    "line": 34,
                     "type": "EventEmitter"
                 }
             ],
@@ -216,7 +329,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './button.component.html',\r\n  styleUrl: './button.component.sass'\r\n})\r\nexport class ButtonComponent {\r\n  /** Styling variant of the button */\r\n  @Input()\r\n  variant: 'primary' | 'secondary' | 'header' | 'minimalist'  = 'primary';\r\n\r\n  /** How large should the button be? */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /**\r\n   * Button contents\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    return ['labdt-button', this.size, this.variant];\r\n  }\r\n}\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './button.component.html',\r\n  styleUrl: './button.component.sass'\r\n})\r\nexport class ButtonComponent {\r\n  /** Styling variant of the button */\r\n  @Input()\r\n  variant: 'primary' | 'secondary' | 'header' | 'minimalist'  = 'primary';\r\n\r\n  /** How large should the button be? */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /** Fill all available content with the button */\r\n  @Input()\r\n  fill: boolean = false;\r\n\r\n  /**\r\n   * Button contents\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    let classes = ['labdt-button', this.size, this.variant];\r\n    if (this.fill) {\r\n      classes.push('fill');\r\n    }\r\n    return classes;\r\n  }\r\n}\r\n",
             "styleUrl": "./button.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -229,7 +342,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 32
+                        "line": 36
                     }
                 }
             },
@@ -280,7 +393,50 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div>\r\n  <div class=\"logo\">\r\n    <app-logo></app-logo>\r\n  </div>\r\n  <div class=\"navbar\">\r\n    <app-button [label]=\"'Home'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Design Thinking'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Sign In'\" [variant]=\"'header'\"></app-button>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <div>\r\n    <app-logo></app-logo>\r\n  </div>\r\n  <div class=\"navbar\">\r\n    <app-button [label]=\"'Home'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Design Thinking'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Sign In'\" [variant]=\"'header'\"></app-button>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "HomeComponent",
+            "id": "component-HomeComponent-0d9ab5c6df2f47f233c899e15867a60349eb023551e7189e2faa47e16fbcb76e4dd321666f41d3844b0982b19885d1cd675c554c5f841c329989eef01b9a5032",
+            "file": "src/app/pages/home/home.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./home.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "HeaderComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { HeaderComponent } from \"../../components/header/header.component\";\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  standalone: true,\r\n  imports: [HeaderComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.sass'\r\n})\r\nexport class HomeComponent {\r\n\r\n}\r\n",
+            "styleUrl": "./home.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <app-header></app-header>\r\n</div>\r\n"
         },
         {
             "name": "InputComponent",
@@ -690,7 +846,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 14,
+        "count": 18,
         "status": "low",
         "files": [
             {
@@ -737,8 +893,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 80,
-                "coverageCount": "4/5",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
                 "status": "very-good"
             },
             {
@@ -776,6 +932,24 @@
                 "coveragePercent": 50,
                 "coverageCount": "1/2",
                 "status": "medium"
+            },
+            {
+                "filePath": "src/app/modals/base-modal/base-modal.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BaseModalComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/pages/home/home.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
             },
             {
                 "filePath": "src/environments/environment.development.ts",

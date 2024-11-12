@@ -4,11 +4,15 @@
 
 .labdt-button
   +font-primary(500)
+  box-sizing: border-box
   font-size: 20px
   position: relative
   padding: 24px 48px
   cursor: pointer
   overflow: hidden
+  display: flex
+  align-items: center
+  justify-content: center
 
 // Primary variant
 .labdt-button.primary
@@ -81,3 +85,7 @@
 
   &:hover
     color: $color-secondary-highlight
+
+// Fill available content
+.labdt-button.fill
+  width: 100%

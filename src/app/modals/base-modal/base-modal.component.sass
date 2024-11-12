@@ -1,0 +1,58 @@
+@use "../../../sass/colors" as *
+@use "../../../sass/fonts" as *
+@use "../../../sass/mixins" as *
+
+div
+  position: fixed
+  display: flex
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(0, 0, 0, 0.5)
+  align-items: center
+  justify-content: center
+
+div div
+  position: relative
+  border: none
+  border-radius: 25px
+  background-color: $color-background-light
+  padding: 40px 100px
+  width: fit-content
+  height: fit-content
+  flex-direction: column
+  align-items: center
+  gap: 10px
+
+div div.close
+  +font-primary(900)
+  +drop-shadow-soft
+  outline: 1px solid $color-primary
+  z-index: 2
+  position: absolute
+  top: 15px
+  right: 15px
+  left: auto
+  color: $color-primary
+  padding: 5px 4px 3px 4px
+  font-size: 25px
+  width: 20px
+  height: 20px
+  text-align: center
+  align-items: center
+  background-color: white
+
+  &:hover
+    cursor: pointer
+    background-color: $color-primary-highlight
+
+div div.interactions
+  width: 100%
+  display: flex
+  flex-direction: row
+
+div div.interactions div
+  padding: 0
+  width: 100%
+  display: block

@@ -1,0 +1,23 @@
+<div *ngIf="isActive">
+  <div>
+    <div *ngIf="closeButton" class="close" (click)="onClose()"><fa-icon [icon]="iconClose"></fa-icon></div>
+    <ng-content></ng-content>
+    <div *ngIf="cancelButton || okButton" class="interactions">
+      <div *ngIf="cancelButton">
+        <app-button
+          [label]="'cancel'"
+          [fill]="true"
+          (onClick)="onCancel.emit($event); onClose()"
+        ></app-button>
+      </div>
+      <div *ngIf="okButton">
+        <app-button
+          [label]="'ok'"
+          [variant]="'secondary'"
+          [fill]="true"
+          (onClick)="onOk.emit($event); onClose()"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>

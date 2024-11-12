@@ -17,6 +17,10 @@ export class ButtonComponent {
   @Input()
   size: 'small' | 'medium' | 'large' = 'medium';
 
+  /** Fill all available content with the button */
+  @Input()
+  fill: boolean = false;
+
   /**
    * Button contents
    *
@@ -30,6 +34,10 @@ export class ButtonComponent {
   onClick = new EventEmitter<Event>();
 
   public get classes(): string[] {
-    return ['labdt-button', this.size, this.variant];
+    let classes = ['labdt-button', this.size, this.variant];
+    if (this.fill) {
+      classes.push('fill');
+    }
+    return classes;
   }
 }

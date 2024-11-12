@@ -6,9 +6,6 @@ const meta: Meta<ButtonComponent> = {
   title: 'Example/Button',
   component: ButtonComponent,
   tags: ['autodocs'],
-  argTypes: {
-
-  },
   args: { onClick: fn() },
 };
 
