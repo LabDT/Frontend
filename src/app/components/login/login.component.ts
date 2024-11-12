@@ -10,7 +10,6 @@ import { environment } from '../../../environments/environment';
   styleUrl: './login.component.sass'
 })
 export class LoginComponent {
-
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       // Initialize Google Identity with cliend_id and callback
@@ -21,8 +20,14 @@ export class LoginComponent {
         ux_mode: 'popup',
         auto_select: false,
       });
+    }
 
-      // Render Google's login button
+    this.renderGoogleLoginButton();
+  }
+
+  // Render Google's login button
+  renderGoogleLoginButton(): void {
+    if (typeof window !== 'undefined') {
       (window as any).google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
         {
@@ -32,6 +37,7 @@ export class LoginComponent {
           text: "continue_with",
           size: "large",
           logo_alignment: "left",
+          width: "400"
         }
       );
     }
@@ -41,6 +47,5 @@ export class LoginComponent {
   handleCredentialResponse(response: any) {
     const token = response.credential;
     console.log("Token ID:", token);
-
   }
 }

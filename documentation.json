@@ -1,7 +1,73 @@
 {
     "pipes": [],
     "interfaces": [],
-    "injectables": [],
+    "injectables": [
+        {
+            "name": "LoginModalService",
+            "id": "injectable-LoginModalService-c6da17c14377ae32a8afebee5bc1c472ed71e97aa4aa3709f50860ec9b37c8085c31f81336fecf5f04ba02aea0a5ee4b0311b6ed1ae2d455e61932439d939acb",
+            "file": "src/app/services/login-modal.service.ts",
+            "properties": [
+                {
+                    "name": "isActive$",
+                    "defaultValue": "this.isActiveSubject.asObservable()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "isActiveSubject",
+                    "defaultValue": "new BehaviorSubject<boolean>(false)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "close",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nMethod to close the login modal",
+                    "description": "<p>Method to close the login modal</p>\n"
+                },
+                {
+                    "name": "open",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nMethod to open the login modal",
+                    "description": "<p>Method to open the login modal</p>\n"
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class LoginModalService {\r\n  private isActiveSubject = new BehaviorSubject<boolean>(false);\r\n\r\n  isActive$ = this.isActiveSubject.asObservable();\r\n\r\n  /** Method to open the login modal */\r\n  open() {\r\n    this.isActiveSubject.next(true);\r\n  }\r\n\r\n  /** Method to close the login modal */\r\n  close() {\r\n    this.isActiveSubject.next(false);\r\n  }\r\n}\r\n",
+            "extends": [],
+            "type": "injectable"
+        }
+    ],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -117,7 +183,7 @@
         },
         {
             "name": "BaseModalComponent",
-            "id": "component-BaseModalComponent-9e0bc92d7a610de3a7bc9dc9f02320f4aea35bdd4e60b54d3cb576f9090db5f0391cb684da0f7f674174e12c3606ac3f8df1b179e4140cb7ddcad5d7c81a52b4",
+            "id": "component-BaseModalComponent-16471228a9d1a646fb079c0ddd1ffdde5e495459a498fd1ad4fd21ac558c465c8a71a22c93676d7bf6cd31b98e875253ce12bbe2ac8353361e80b8fc7d25a178",
             "file": "src/app/modals/base-modal/base-modal.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -140,7 +206,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nShould it have a cancel button?",
                     "description": "<p>Should it have a cancel button?</p>\n",
-                    "line": 23,
+                    "line": 31,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -151,7 +217,18 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nShould it have a close button?",
                     "description": "<p>Should it have a close button?</p>\n",
-                    "line": 15,
+                    "line": 23,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isActive",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIs the modal currently active?",
+                    "description": "<p>Is the modal currently active?</p>\n",
+                    "line": 19,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -162,7 +239,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nShould it have an ok button?",
                     "description": "<p>Should it have an ok button?</p>\n",
-                    "line": 19,
+                    "line": 27,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -175,7 +252,17 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional cancel handler",
                     "description": "<p>Optional cancel handler</p>\n",
-                    "line": 31,
+                    "line": 43,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onClose",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional close handler",
+                    "description": "<p>Optional close handler</p>\n",
+                    "line": 35,
                     "type": "EventEmitter"
                 },
                 {
@@ -185,12 +272,35 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional ok handler",
                     "description": "<p>Optional ok handler</p>\n",
-                    "line": 27,
+                    "line": 39,
                     "type": "EventEmitter"
                 }
             ],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "iconClose",
+                    "defaultValue": "faClose",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onCloseModal",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -204,22 +314,26 @@
                 {
                     "name": "ButtonComponent",
                     "type": "component"
+                },
+                {
+                    "name": "FontAwesomeModule",
+                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { ButtonComponent } from \"../../components/button/button.component\";\r\n\r\n@Component({\r\n  selector: 'app-base-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, ButtonComponent],\r\n  templateUrl: './base-modal.component.html',\r\n  styleUrl: './base-modal.component.sass'\r\n})\r\nexport class BaseModalComponent {\r\n  /** Should it have a close button? */\r\n  @Input()\r\n  closeButton: boolean = false;\r\n\r\n  /** Should it have an ok button? */\r\n  @Input()\r\n  okButton: boolean = false;\r\n\r\n  /** Should it have a cancel button? */\r\n  @Input()\r\n  cancelButton: boolean = false;\r\n\r\n  /** Optional ok handler */\r\n  @Output()\r\n  onOk = new EventEmitter<Event>();\r\n\r\n  /** Optional cancel handler */\r\n  @Output()\r\n  onCancel = new EventEmitter<Event>();\r\n}\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { ButtonComponent } from \"../../components/button/button.component\";\r\nimport { FontAwesomeModule } from \"@fortawesome/angular-fontawesome\";\r\nimport { faClose } from \"@fortawesome/free-solid-svg-icons\";\r\n\r\n@Component({\r\n  selector: 'app-base-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, ButtonComponent, FontAwesomeModule],\r\n  templateUrl: './base-modal.component.html',\r\n  styleUrl: './base-modal.component.sass'\r\n})\r\nexport class BaseModalComponent {\r\n  iconClose = faClose;\r\n\r\n  /** Is the modal currently active? */\r\n  @Input()\r\n  isActive: boolean = false;\r\n\r\n  /** Should it have a close button? */\r\n  @Input()\r\n  closeButton: boolean = false;\r\n\r\n  /** Should it have an ok button? */\r\n  @Input()\r\n  okButton: boolean = false;\r\n\r\n  /** Should it have a cancel button? */\r\n  @Input()\r\n  cancelButton: boolean = false;\r\n\r\n  /** Optional close handler */\r\n  @Output()\r\n  onClose = new EventEmitter<Event>();\r\n\r\n  /** Optional ok handler */\r\n  @Output()\r\n  onOk = new EventEmitter<Event>();\r\n\r\n  /** Optional cancel handler */\r\n  @Output()\r\n  onCancel = new EventEmitter<Event>();\r\n\r\n  onCloseModal() {\r\n    this.isActive = false;\r\n  }\r\n}\r\n",
             "styleUrl": "./base-modal.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div>\r\n  <div>\r\n    <div *ngIf=\"closeButton\" class=\"close\"></div>\r\n    <ng-content></ng-content>\r\n    <div *ngIf=\"cancelButton || okButton\" class=\"interactions\">\r\n      <div>\r\n        <app-button [label]=\"'cancel'\"></app-button>\r\n      </div>\r\n      <div>\r\n        <app-button [label]=\"'ok'\"></app-button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [ngStyle]=\"{ 'display': isActive ? 'flex' : 'none' }\">\r\n  <div>\r\n    <div *ngIf=\"closeButton\" class=\"close\" (click)=\"onClose.emit($event); onCloseModal()\"><fa-icon [icon]=\"iconClose\"></fa-icon></div>\r\n    <ng-content></ng-content>\r\n    <div *ngIf=\"cancelButton || okButton\" class=\"interactions\">\r\n      <div *ngIf=\"cancelButton\">\r\n        <app-button\r\n          [label]=\"'cancel'\"\r\n          [fill]=\"true\"\r\n          (onClick)=\"onCancel.emit($event); onCloseModal()\"\r\n        ></app-button>\r\n      </div>\r\n      <div *ngIf=\"okButton\">\r\n        <app-button\r\n          [label]=\"'ok'\"\r\n          [variant]=\"'secondary'\"\r\n          [fill]=\"true\"\r\n          (onClick)=\"onOk.emit($event); onCloseModal()\"\r\n        ></app-button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-978b9572ee3bf8185e2bfdd4034d2ac61d0b86badfd92ffeae6b05f63d18e61e86e8c9ab7c7dae975c3b66f87e79c36ffed2363cb54e3d3df6056d9f8fb49a0e",
+            "id": "component-ButtonComponent-c41df1179579bac9d0feb31e38f92f143c4552688b259a23232441b20a89cf6706392c05747409222281b189bf21d70a29f0dd4dd9f26de44b6b35fb8827bab3",
             "file": "src/app/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -242,7 +356,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nFill all available content with the button",
                     "description": "<p>Fill all available content with the button</p>\n",
-                    "line": 22,
+                    "line": 27,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -253,16 +367,16 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 701,
-                            "end": 715,
+                            "pos": 735,
+                            "end": 749,
                             "kind": 327,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 702,
-                                "end": 710,
+                                "pos": 736,
+                                "end": 744,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -274,7 +388,7 @@
                     ],
                     "rawdescription": "\n\nButton contents\n\n",
                     "description": "<p>Button contents</p>\n",
-                    "line": 30,
+                    "line": 35,
                     "type": "string",
                     "decorators": []
                 },
@@ -285,7 +399,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nHow large should the button be?",
                     "description": "<p>How large should the button be?</p>\n",
-                    "line": 18,
+                    "line": 23,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 },
@@ -297,7 +411,7 @@
                     "rawdescription": "\nStyling variant of the button",
                     "description": "<p>Styling variant of the button</p>\n",
                     "line": 14,
-                    "type": "\"primary\" | \"secondary\" | \"header\" | \"minimalist\"",
+                    "type": "\"primary\" | \"secondary\" | \"light\" | \"header\" | \"minimalist\"",
                     "decorators": []
                 }
             ],
@@ -309,7 +423,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional click handler",
                     "description": "<p>Optional click handler</p>\n",
-                    "line": 34,
+                    "line": 39,
                     "type": "EventEmitter"
                 }
             ],
@@ -329,7 +443,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './button.component.html',\r\n  styleUrl: './button.component.sass'\r\n})\r\nexport class ButtonComponent {\r\n  /** Styling variant of the button */\r\n  @Input()\r\n  variant: 'primary' | 'secondary' | 'header' | 'minimalist'  = 'primary';\r\n\r\n  /** How large should the button be? */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /** Fill all available content with the button */\r\n  @Input()\r\n  fill: boolean = false;\r\n\r\n  /**\r\n   * Button contents\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    let classes = ['labdt-button', this.size, this.variant];\r\n    if (this.fill) {\r\n      classes.push('fill');\r\n    }\r\n    return classes;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './button.component.html',\r\n  styleUrl: './button.component.sass'\r\n})\r\nexport class ButtonComponent {\r\n  /** Styling variant of the button */\r\n  @Input()\r\n  variant: 'primary'\r\n    | 'secondary'\r\n    | 'light'\r\n    | 'header'\r\n    | 'minimalist'\r\n    = 'primary';\r\n\r\n  /** How large should the button be? */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /** Fill all available content with the button */\r\n  @Input()\r\n  fill: boolean = false;\r\n\r\n  /**\r\n   * Button contents\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    let classes = ['labdt-button', this.size, this.variant];\r\n    if (this.fill) {\r\n      classes.push('fill');\r\n    }\r\n    return classes;\r\n  }\r\n}\r\n",
             "styleUrl": "./button.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -342,7 +456,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 36
+                        "line": 41
                     }
                 }
             },
@@ -350,7 +464,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-8e2d545368659facd1bacba535ba7a24faca6ee692979d1dbe974412165aefa6b1a9452a027d174e207b7f41a81c3aaac39a7393010d67796ae3da13b841dc3a",
+            "id": "component-HeaderComponent-9170bba9359f88edaf611131ee1ad40cd58d8fa344044a3c74b6627472733ad301b9c651300516f015183308225f571245fae59db51b99bf98f13820cc25b864",
             "file": "src/app/components/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -368,7 +482,18 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "onOpenLoginModal",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -387,17 +512,43 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { LogoComponent } from \"../logo/logo.component\";\r\nimport { ButtonComponent } from \"../button/button.component\";\r\n\r\n@Component({\r\n  selector: 'app-header',\r\n  standalone: true,\r\n  imports: [LogoComponent, ButtonComponent],\r\n  templateUrl: './header.component.html',\r\n  styleUrl: './header.component.sass'\r\n})\r\nexport class HeaderComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { LogoComponent } from \"../logo/logo.component\";\r\nimport { ButtonComponent } from \"../button/button.component\";\r\nimport { LoginModalService } from '../../services/login-modal.service';\r\n\r\n@Component({\r\n  selector: 'app-header',\r\n  standalone: true,\r\n  imports: [LogoComponent, ButtonComponent],\r\n  templateUrl: './header.component.html',\r\n  styleUrl: './header.component.sass'\r\n})\r\nexport class HeaderComponent {\r\n\r\n  constructor(private loginModalService: LoginModalService) {}\r\n\r\n  onOpenLoginModal() {\r\n    this.loginModalService.open();\r\n  }\r\n}\r\n",
             "styleUrl": "./header.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "loginModalService",
+                        "type": "LoginModalService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "loginModalService",
+                        "type": "LoginModalService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<div>\r\n  <div>\r\n    <app-logo></app-logo>\r\n  </div>\r\n  <div class=\"navbar\">\r\n    <app-button [label]=\"'Home'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Design Thinking'\" [variant]=\"'minimalist'\"></app-button>\r\n    <app-button [label]=\"'Sign In'\" [variant]=\"'header'\"></app-button>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <div>\r\n    <app-logo></app-logo>\r\n  </div>\r\n  <div class=\"navbar\">\r\n    <app-button\r\n      [label]=\"'Home'\"\r\n      [variant]=\"'minimalist'\"\r\n    ></app-button>\r\n    <app-button\r\n      [label]=\"'Design Thinking'\"\r\n      [variant]=\"'minimalist'\"\r\n    ></app-button>\r\n    <app-button\r\n      [label]=\"'Sign In'\"\r\n      [variant]=\"'header'\"\r\n      (onClick)=\"onOpenLoginModal()\"\r\n    ></app-button>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-0d9ab5c6df2f47f233c899e15867a60349eb023551e7189e2faa47e16fbcb76e4dd321666f41d3844b0982b19885d1cd675c554c5f841c329989eef01b9a5032",
+            "id": "component-HomeComponent-1f9b89ec7d3dd743ee7a1372e36f7c50ed72ab0b31dec5b90203f62a5d83eae74e11d74e0a0ee4d29b83245dff9fd9be3b10a61eaeb8b024e03e0776b3d25ba0",
             "file": "src/app/pages/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -425,18 +576,26 @@
                 {
                     "name": "HeaderComponent",
                     "type": "component"
+                },
+                {
+                    "name": "LoginModalComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "LoginComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { HeaderComponent } from \"../../components/header/header.component\";\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  standalone: true,\r\n  imports: [HeaderComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.sass'\r\n})\r\nexport class HomeComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { HeaderComponent } from \"../../components/header/header.component\";\r\nimport { LoginModalComponent } from \"../../modals/login-modal/login-modal.component\";\r\nimport { LoginComponent } from \"../../components/login/login.component\";\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  standalone: true,\r\n  imports: [HeaderComponent, LoginModalComponent, LoginComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.sass'\r\n})\r\nexport class HomeComponent {\r\n\r\n}\r\n",
             "styleUrl": "./home.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <app-header></app-header>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <app-login-modal></app-login-modal>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <app-header></app-header>\r\n</div>\r\n"
         },
         {
             "name": "InputComponent",
@@ -549,7 +708,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-ed3e6c8ea72f69dfafeb5bb8e4216f639bcca319e604556a60ec9e3e037a4ff50f59181f85f3f2f390e7c35506f06db613ac8e6fa7853d8b5e987e92ee72faac",
+            "id": "component-LoginComponent-06dd9f8657b57ab37d442f044d90e52d9d63c4dd087e73a51705c4df3a13aa63e6a32ba7671f41572c66f67b8e31f2c9783e165428ddebac216a6af6f6691794",
             "file": "src/app/components/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -581,7 +740,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -605,6 +764,16 @@
                     "line": 14,
                     "deprecated": false,
                     "deprecationMessage": ""
+                },
+                {
+                    "name": "renderGoogleLoginButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "deprecated": false,
@@ -616,18 +785,169 @@
                 {
                     "name": "GoogleSigninButtonModule",
                     "type": "module"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';\r\nimport { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [GoogleSigninButtonModule],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n\r\n      // Render Google's login button\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"buttonDiv\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n\r\n  }\r\n}\r\n",
+            "sourceCode": "import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';\r\nimport { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\nimport { ButtonComponent } from \"../button/button.component\";\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [GoogleSigninButtonModule, ButtonComponent],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleLoginButton();\r\n  }\r\n\r\n  // Render Google's login button\r\n  renderGoogleLoginButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"buttonDiv\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"400\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n  }\r\n}\r\n",
             "styleUrl": "./login.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
             "templateData": "<div id=\"buttonDiv\"></div>\r\n"
+        },
+        {
+            "name": "LoginModalComponent",
+            "id": "component-LoginModalComponent-978e3742d29f85f971eedba18ae93aadb78628c246023a39cb3332803cf10807aa15cc794fd5ef30944cad491cb14d8eba2695a390801f55e89321294338e467",
+            "file": "src/app/modals/login-modal/login-modal.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login-modal",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./login-modal.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "isActive",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIs the modal currently active?",
+                    "description": "<p>Is the modal currently active?</p>\n",
+                    "line": 21,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "subscription",
+                    "defaultValue": "new Subscription",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subscription",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "closeModal",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 37,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BaseModalComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "LogoComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "InputComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "LoginComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { BaseModalComponent } from \"../base-modal/base-modal.component\";\r\nimport { CommonModule } from '@angular/common';\r\nimport { LogoComponent } from \"../../components/logo/logo.component\";\r\nimport { InputComponent } from \"../../components/input/input.component\";\r\nimport { ButtonComponent } from \"../../components/button/button.component\";\r\nimport { Subscription } from 'rxjs';\r\nimport { LoginModalService } from '../../services/login-modal.service';\r\nimport { LoginComponent } from \"../../components/login/login.component\";\r\n\r\n@Component({\r\n  selector: 'app-login-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, BaseModalComponent, LogoComponent, InputComponent, ButtonComponent, LoginComponent],\r\n  templateUrl: './login-modal.component.html',\r\n  styleUrl: './login-modal.component.sass'\r\n})\r\nexport class LoginModalComponent {\r\n  /** Is the modal currently active? */\r\n  @Input()\r\n  isActive: boolean = false;\r\n\r\n  private subscription: Subscription = new Subscription;\r\n\r\n  constructor(private loginModalService: LoginModalService) { }\r\n\r\n  ngOnInit() {\r\n    this.subscription = this.loginModalService.isActive$.subscribe(\r\n      isActive => this.isActive = isActive\r\n    )\r\n\r\n    if (this.isActive) {\r\n      this.loginModalService.open();\r\n    }\r\n  }\r\n\r\n  ngOnDestroy() {\r\n    if (this.subscription) {\r\n      this.subscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n  closeModal() {\r\n    this.loginModalService.close();\r\n  }\r\n}\r\n",
+            "styleUrl": "./login-modal.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "loginModalService",
+                        "type": "LoginModalService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 23,
+                "jsdoctags": [
+                    {
+                        "name": "loginModalService",
+                        "type": "LoginModalService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<app-base-modal\r\n  [isActive]=\"isActive\"\r\n  [closeButton]=\"true\"\r\n  (onClose)=\"closeModal()\"\r\n>\r\n  <app-logo></app-logo>\r\n  <h1 class=\"header\">\r\n    Log in to continue\r\n  </h1>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'email'\"\r\n      [label]=\"'Email'\"\r\n      [placeholder]=\"'your.email@mail.com'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"password-forgot\">\r\n    Forgot your password?\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-button\r\n      [variant]=\"'primary'\"\r\n      [label]=\"'Log In'\"\r\n      [fill]=\"true\"\r\n    ></app-button>\r\n  </div>\r\n  <span class=\"or\">\r\n    OR\r\n  </span>\r\n  <div class=\"expander\">\r\n    <app-login></app-login>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <p class=\"tos\">\r\n      By continuing you agree to LabDT’s <span class=\"highlight\">Terms of Service</span> and acknowledge you’ve read our <span class=\"highlight\">Privacy Policy</span>.\r\n    </p>\r\n    <p class=\"tos\">\r\n       <p>\r\n    <hr>\r\n    <p class=\"sign-up\">\r\n      Not on LabDT yet? Sign up\r\n    </p>\r\n  </div>\r\n</app-base-modal>\r\n"
         },
         {
             "name": "LogoComponent",
@@ -903,7 +1223,7 @@
                 "linktype": "component",
                 "name": "HeaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -921,7 +1241,7 @@
                 "linktype": "component",
                 "name": "LoginComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -938,9 +1258,18 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "BaseModalComponent",
-                "coveragePercent": 83,
-                "coverageCount": "5/6",
-                "status": "very-good"
+                "coveragePercent": 70,
+                "coverageCount": "7/10",
+                "status": "good"
+            },
+            {
+                "filePath": "src/app/modals/login-modal/login-modal.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginModalComponent",
+                "coveragePercent": 14,
+                "coverageCount": "1/7",
+                "status": "low"
             },
             {
                 "filePath": "src/app/pages/home/home.component.ts",
@@ -950,6 +1279,15 @@
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
+            },
+            {
+                "filePath": "src/app/services/login-modal.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "LoginModalService",
+                "coveragePercent": 40,
+                "coverageCount": "2/5",
+                "status": "medium"
             },
             {
                 "filePath": "src/environments/environment.development.ts",

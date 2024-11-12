@@ -11,7 +11,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent {
   /** Styling variant of the button */
   @Input()
-  variant: 'primary' | 'secondary' | 'header' | 'minimalist'  = 'primary';
+  variant: 'primary'
+    | 'secondary'
+    | 'light'
+    | 'header'
+    | 'minimalist'
+    = 'primary';
 
   /** How large should the button be? */
   @Input()

@@ -1,13 +1,13 @@
-<div *ngIf="isActive">
+<div [ngStyle]="{ 'display': isActive ? 'flex' : 'none' }">
   <div>
-    <div *ngIf="closeButton" class="close" (click)="onClose()"><fa-icon [icon]="iconClose"></fa-icon></div>
+    <div *ngIf="closeButton" class="close" (click)="onClose.emit($event); onCloseModal()"><fa-icon [icon]="iconClose"></fa-icon></div>
     <ng-content></ng-content>
     <div *ngIf="cancelButton || okButton" class="interactions">
       <div *ngIf="cancelButton">
         <app-button
           [label]="'cancel'"
           [fill]="true"
-          (onClick)="onCancel.emit($event); onClose()"
+          (onClick)="onCancel.emit($event); onCloseModal()"
         ></app-button>
       </div>
       <div *ngIf="okButton">
@@ -15,7 +15,7 @@
           [label]="'ok'"
           [variant]="'secondary'"
           [fill]="true"
-          (onClick)="onOk.emit($event); onClose()"
+          (onClick)="onOk.emit($event); onCloseModal()"
         ></app-button>
       </div>
     </div>

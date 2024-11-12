@@ -42,6 +42,20 @@
   &:hover
     background-color: $color-secondary-highlight
 
+// Light variant
+.labdt-button.light
+  +drop-shadow-soft
+  color: black
+  background-color: $color-light
+  border: none
+  border-radius: 35px
+
+  &:focus
+    +outline
+
+  &:hover
+    background-color: $color-light-highlight
+
 // Header variant
 .labdt-button.header
   color: white

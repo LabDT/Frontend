@@ -26,6 +26,13 @@ export const Secondary: Story = {
   },
 };
 
+export const Light: Story = {
+  args: {
+    variant: 'light',
+    label: 'Button',
+  }
+}
+
 export const Header: Story = {
   args: {
     variant: 'header',

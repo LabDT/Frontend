@@ -30,6 +30,10 @@ export class BaseModalComponent {
   @Input()
   cancelButton: boolean = false;
 
+  /** Optional close handler */
+  @Output()
+  onClose = new EventEmitter<Event>();
+
   /** Optional ok handler */
   @Output()
   onOk = new EventEmitter<Event>();
@@ -38,7 +42,7 @@ export class BaseModalComponent {
   @Output()
   onCancel = new EventEmitter<Event>();
 
-  onClose() {
+  onCloseModal() {
     this.isActive = false;
   }
 }

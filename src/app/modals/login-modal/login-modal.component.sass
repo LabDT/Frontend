@@ -1,0 +1,54 @@
+@use "../../../sass/colors" as *
+@use "../../../sass/fonts" as *
+@use "../../../sass/mixins" as *
+
+.expander
+  width: 400px
+
+.header
+  +font-primary(400)
+  font-size: 24px
+  margin-top: 0
+
+.password-forgot
+  +font-primary(400)
+  font-size: 16px
+  left: 32px
+
+  &:hover
+    text-decoration: underline
+    color: $color-primary
+    cursor: pointer
+
+.or
+  +font-primary(600)
+  font-size: 16px
+
+.tos
+  +font-primary(400)
+  font-size: 16px
+  color: rgba(0, 0, 0, 0.8)
+  text-align: center
+
+.highlight
+  +font-primary(600)
+
+  &:hover
+    text-decoration: underline
+    color: $color-primary
+    cursor: pointer
+
+hr
+  width: 128px
+  height: 0
+  background-color: rgba(0, 0, 0, 0.4)
+
+.sign-up
+  +font-primary(700)
+  font-size: 16px
+  text-align: center
+
+  &:hover
+    text-decoration: underline
+    color: $color-primary
+    cursor: pointer
