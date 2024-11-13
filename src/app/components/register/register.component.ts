@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +10,9 @@ import { environment } from '../../../environments/environment';
   styleUrl: './register.component.sass'
 })
 export class RegisterComponent {
+
+  constructor(private authService: AuthService) { }
+
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       // Initialize Google Identity with cliend_id and callback
@@ -46,5 +50,6 @@ export class RegisterComponent {
   handleCredentialResponse(response: any) {
     const token = response.credential;
     console.log("Token ID:", token);
+    this.authService.registerWithToken(token);
   }
 }
