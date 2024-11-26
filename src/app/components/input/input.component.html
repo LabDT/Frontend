@@ -1,4 +1,11 @@
 <div [ngClass]="classes">
   <label *ngIf="label" [for]="inputId">{{ label }}</label>
   <input [id]="inputId" [placeholder]="placeholder" [type]="type">
+  <div *ngIf="button" class="icon-button-container">
+    <app-icon-button
+      [variant]="button"
+      [size]="'large'"
+      (onClick)="onClick.emit($event)"
+    ></app-icon-button>
+  </div>
 </div>

@@ -4,9 +4,23 @@
     "injectables": [
         {
             "name": "AuthService",
-            "id": "injectable-AuthService-dc297663fb196f6390d01cd8a88e4c7a333a9e082067b4e3490ae57748b699384079179267d234f3664ee1d5925100203f9fd714169eeb1aea3c8058f0442e09",
+            "id": "injectable-AuthService-080eae937a4ff29e674a8ffc22638e16245a746b14991e4223cc1f13403252e2b3ad5e39f23fa28689b2344ffb63263674da4a5278255d0a4ad208f02747b43a",
             "file": "src/app/services/auth.service.ts",
             "properties": [
+                {
+                    "name": "accessToken",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        123
+                    ]
+                },
                 {
                     "name": "isLoading",
                     "defaultValue": "false",
@@ -16,10 +30,117 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 10
+                    "line": 12
+                },
+                {
+                    "name": "isSignedIn",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        123
+                    ]
                 }
             ],
             "methods": [
+                {
+                    "name": "getAccessToken",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 54,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nReturns the access token",
+                    "description": "<p>Returns the access token</p>\n"
+                },
+                {
+                    "name": "getRefreshToken",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nReturns the refresh token",
+                    "description": "<p>Returns the refresh token</p>\n"
+                },
+                {
+                    "name": "initializeAuth",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInitialize authentication state",
+                    "description": "<p>Initialize authentication state</p>\n"
+                },
+                {
+                    "name": "loginWithToken",
+                    "args": [
+                        {
+                            "name": "token",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 99,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nSends a login request",
+                    "description": "<p>Sends a login request</p>\n",
+                    "modifierKind": [
+                        134
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "token",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "logout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 158,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nLogout and remove all tokens",
+                    "description": "<p>Logout and remove all tokens</p>\n"
+                },
+                {
+                    "name": "refreshAccessToken",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<string>",
+                    "typeParameters": [],
+                    "line": 124,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nRefresh access token",
+                    "description": "<p>Refresh access token</p>\n"
+                },
                 {
                     "name": "registerWithToken",
                     "args": [
@@ -31,14 +152,67 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "any",
+                    "returnType": "Promise<void>",
                     "typeParameters": [],
-                    "line": 14,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "rawdescription": "\nSends a registration request",
+                    "description": "<p>Sends a registration request</p>\n",
+                    "modifierKind": [
+                        134
+                    ],
                     "jsdoctags": [
                         {
                             "name": "token",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "storeTokens",
+                    "args": [
+                        {
+                            "name": "accessToken",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "refreshToken",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nSave tokens after login/register",
+                    "description": "<p>Save tokens after login/register</p>\n",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "accessToken",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "refreshToken",
                             "type": "string",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -53,7 +227,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { environment } from '../../environments/environment';\r\nimport { finalize, tap } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthService {\r\n  isLoading: boolean = false;\r\n\r\n  constructor(private http: HttpClient) { }\r\n\r\n  registerWithToken(token: string) {\r\n    if (this.isLoading) {\r\n      return;\r\n    }\r\n\r\n    this.isLoading = true;\r\n\r\n    const payload = { token };\r\n\r\n    return this.http.post(`${environment.backendUrl}/user/register`, payload)\r\n      .pipe(\r\n        tap(response => {\r\n          console.log(\"Successfully registered\", response);\r\n        }),\r\n        finalize(() => {\r\n          this.isLoading = false;\r\n        })\r\n      )\r\n    .subscribe(\r\n      response => {},\r\n      error => {\r\n        console.error(\"Failed to register\", error);\r\n      }\r\n    )\r\n  }\r\n}\r\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { environment } from '../../environments/environment';\r\nimport { CookieService } from 'ngx-cookie-service';\r\nimport { finalize, lastValueFrom, map, Observable, tap, throwError } from 'rxjs';\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthService {\r\n  isLoading: boolean = false;\r\n  private isSignedIn: boolean = false;\r\n  private accessToken: string | null = null;\r\n\r\n  constructor(\r\n    private http: HttpClient,\r\n    private cookieService: CookieService,\r\n    private router: Router,\r\n  ) { }\r\n\r\n  /** Initialize authentication state */\r\n  initializeAuth(): Promise<void> {\r\n    return new Promise((resolve, reject) => {\r\n      const refreshToken = this.getRefreshToken();\r\n\r\n      if (!refreshToken) {\r\n        console.warn('No refresh token available');\r\n        this.isSignedIn = false;\r\n        resolve();\r\n        return;\r\n      }\r\n\r\n      this.refreshAccessToken().subscribe({\r\n        next: (newAccessToken) => {\r\n          this.isSignedIn = true;\r\n          resolve();\r\n        },\r\n        error: (e) => {\r\n          console.error('Failed to refresh access token during initialization', e);\r\n          this.logout();\r\n          resolve();\r\n        },\r\n      });\r\n    })\r\n  }\r\n\r\n  /** Returns true if the user is currently signed in */\r\n  get signedIn() {\r\n    return this.isSignedIn;\r\n  }\r\n\r\n  /** Returns the access token */\r\n  getAccessToken() {\r\n    return this.accessToken;\r\n  }\r\n\r\n  /** Returns the refresh token */\r\n  getRefreshToken() {\r\n    return this.cookieService.get('refresh_token') || null;\r\n  }\r\n\r\n  /** Save tokens after login/register */\r\n  private storeTokens(accessToken: string, refreshToken: string) {\r\n    this.accessToken = accessToken;\r\n    this.cookieService.set('refresh_token', refreshToken, {\r\n      path: '/',\r\n      secure: true,\r\n      sameSite: 'Strict',\r\n    });\r\n  }\r\n\r\n  /** Sends a registration request */\r\n  async registerWithToken(token: string): Promise<void> {\r\n    if (this.isLoading) {\r\n      console.warn('Duplicate register attempt');\r\n      return;\r\n    }\r\n\r\n    this.logout();\r\n    this.isLoading = true;\r\n\r\n    try {\r\n      const response: any = await lastValueFrom(this.http\r\n        .post(`${environment.backendUrl}/user/register`, { token })\r\n      );\r\n\r\n      this.storeTokens(response.access_token, response.refresh_token);\r\n      this.isSignedIn = true;\r\n      console.log('Signed in');\r\n    } catch (error) {\r\n      console.error('Failed to register', error);\r\n    } finally {\r\n      this.isLoading = false;\r\n    }\r\n  }\r\n\r\n  /** Sends a login request */\r\n  async loginWithToken(token: string): Promise<void> {\r\n    if (this.isLoading) {\r\n      console.warn('Duplicate login attempt');\r\n      return;\r\n    }\r\n\r\n    this.logout();\r\n    this.isLoading = true;\r\n\r\n    try {\r\n      const response: any = await lastValueFrom(\r\n        this.http.post(`${environment.backendUrl}/user/login`, { token })\r\n      );\r\n\r\n      this.storeTokens(response.access_token, response.refresh_token);\r\n      this.isSignedIn = true;\r\n      console.log('Signed in');\r\n    } catch (error) {\r\n      console.error('Failed to login', error);\r\n    } finally {\r\n      this.isLoading = false;\r\n    }\r\n  }\r\n\r\n  /** Refresh access token */\r\n  refreshAccessToken(): Observable<string> {\r\n    if (this.isLoading) {\r\n      return throwError(() => new Error('Already refreshing token'));\r\n    }\r\n\r\n    const token = this.getRefreshToken();\r\n    if (!token) {\r\n      return throwError(() => new Error('No refresh token available'));\r\n    }\r\n\r\n    this.isLoading = true;\r\n\r\n    return this.http\r\n      .post<any>(`${environment.backendUrl}/user/refresh-token`, { token })\r\n      .pipe(\r\n        tap({\r\n          next: (response: any) => {\r\n            this.accessToken = response.access_token;\r\n          },\r\n          error: (e) => {\r\n            console.error(\"Failed to refresh access token\", e);\r\n          },\r\n          complete: () => {\r\n            this.isLoading = false;\r\n          },\r\n        }),\r\n        finalize(() => {\r\n          this.isLoading = false;\r\n        }),\r\n        map((response: any) => response.refresh_token)\r\n      );\r\n  }\r\n\r\n  /** Logout and remove all tokens */\r\n  logout() {\r\n    if (this.signedIn) {\r\n      this.accessToken = null;\r\n\r\n      const refreshToken = this.getRefreshToken();\r\n      if (refreshToken) {\r\n        this.cookieService.delete('refresh_token', '/');\r\n      }\r\n\r\n      this.isSignedIn = false;\r\n\r\n      this.router.navigate(['']);\r\n\r\n      console.log('User logget out');\r\n    }\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -65,9 +239,21 @@
                         "type": "HttpClient",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "cookieService",
+                        "type": "CookieService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 10,
+                "line": 14,
                 "jsdoctags": [
                     {
                         "name": "http",
@@ -77,8 +263,39 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "cookieService",
+                        "type": "CookieService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
+            },
+            "accessors": {
+                "signedIn": {
+                    "name": "signedIn",
+                    "getSignature": {
+                        "name": "signedIn",
+                        "type": "",
+                        "returnType": "",
+                        "line": 49,
+                        "rawdescription": "\nReturns true if the user is currently signed in",
+                        "description": "<p>Returns true if the user is currently signed in</p>\n"
+                    }
+                }
             },
             "extends": [],
             "type": "injectable"
@@ -221,13 +438,18 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-11077c14dbdc96c6939181b37a82e8901c640903cc07f9e9f8341c00cf970bb7f14a8d1e25c2bff14734f45b59563505876a996e49dae35e59c05319919a491b",
+            "id": "component-AppComponent-727e785bd66febef80c186b304752adb121dcc2071d0e9983e121464de19dcea67b78017fd36e0d44927dce5951266baad1dbf5e586ccb2d9e1f5698dfab20d5",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
-            "providers": [],
+            "providers": [
+                {
+                    "name": "CookieService",
+                    "type": "injectable"
+                }
+            ],
             "selector": "app-root",
             "styleUrls": [],
             "styles": [],
@@ -238,28 +460,7 @@
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "loggedIn",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "user",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "SocialUser",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 15
-                }
-            ],
+            "propertiesClass": [],
             "methodsClass": [
                 {
                     "name": "ngOnInit",
@@ -267,7 +468,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18,
+                    "line": 17,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -285,7 +486,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {  SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';\r\nimport { Component } from '@angular/core';\r\nimport { RouterOutlet } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.sass'\r\n})\r\nexport class AppComponent {\r\n  constructor(private authService: SocialAuthService) {}\r\n\r\n  user!: SocialUser;\r\n  loggedIn!: boolean;\r\n\r\n  ngOnInit(): void {\r\n    this.authService.authState.subscribe((user) => {\r\n      this.user = user;\r\n      this.loggedIn = (user != null);\r\n    });\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { Router, RouterOutlet } from '@angular/router';\r\nimport { CookieService } from 'ngx-cookie-service';\r\nimport { AuthService } from './services/auth.service';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  providers: [CookieService],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.sass'\r\n})\r\nexport class AppComponent {\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n    // this.authService.initializeAuth().then(() => {\r\n    //   if (this.authService.getsignedIn()) {\r\n    //     this.router.navigate(['dashboard']);\r\n    //   }\r\n    // });\r\n  }\r\n}\r\n",
             "styleUrl": "./app.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -298,16 +499,31 @@
                 "args": [
                     {
                         "name": "authService",
-                        "type": "SocialAuthService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 12,
+                "line": 14,
                 "jsdoctags": [
                     {
                         "name": "authService",
-                        "type": "SocialAuthService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -601,6 +817,44 @@
             "templateData": "<button\r\n  type=\"button\"\r\n  (click)=\"onClick.emit($event)\"\r\n  [ngClass]=\"classes\"\r\n>\r\n  <span>{{ label }}</span>\r\n</button>\r\n"
         },
         {
+            "name": "DashboardPageComponent",
+            "id": "component-DashboardPageComponent-3aaf1e3e6a74df1fbb130607cc010aa333e248575a96ad05898067dcc95b7fe48b87516b64dc7374b07372da0cfb40b3331414226c360a45dab932bc4a78ec8c",
+            "file": "src/app/pages/dashboard-page/dashboard-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-dashboard-page",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./dashboard-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-dashboard-page',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './dashboard-page.component.html',\r\n  styleUrl: './dashboard-page.component.sass'\r\n})\r\nexport class DashboardPageComponent {\r\n\r\n}\r\n",
+            "styleUrl": "./dashboard-page.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p>dashboard-page works!</p>\r\n"
+        },
+        {
             "name": "HeaderComponent",
             "id": "component-HeaderComponent-9170bba9359f88edaf611131ee1ad40cd58d8fa344044a3c74b6627472733ad301b9c651300516f015183308225f571245fae59db51b99bf98f13820cc25b864",
             "file": "src/app/components/header/header.component.ts",
@@ -733,7 +987,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div>\r\n  <app-login-modal></app-login-modal>\r\n  <app-register-modal></app-register-modal>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <app-header></app-header>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <app-login-modal></app-login-modal>\r\n  <app-register-modal></app-register-modal>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <div class=\"app-header-container\">\r\n    <app-header></app-header>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "InputComponent",
@@ -846,7 +1100,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-64c78f516a3db073c0aa15357cfb6e280a74c4fd43a28b107078ec84fbf6e54a6704090bb5e0ac6a0b82e69ac381c3370276ab5c3d2c1d7a9138224415f4d201",
+            "id": "component-LoginComponent-a0164a3171b66b7cc8639fd0b84e92c5fda8b5eca455ade3b3b81745681966050ba64eb32bf87409426d9b7f4a2591968e02b79c22e17a7dcce0eea2e9ec7955",
             "file": "src/app/components/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -876,11 +1130,14 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "void",
+                    "returnType": "any",
                     "typeParameters": [],
-                    "line": 46,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ],
                     "jsdoctags": [
                         {
                             "name": "response",
@@ -899,7 +1156,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 17,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -909,7 +1166,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -923,11 +1180,52 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleLoginButton();\r\n  }\r\n\r\n  // Render Google's login button\r\n  renderGoogleLoginButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"google-login\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\nimport { AuthService } from '../../services/auth.service';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined' && typeof (window as any).google !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleLoginButton();\r\n  }\r\n\r\n  // Render Google's login button\r\n  renderGoogleLoginButton(): void {\r\n    if (typeof window !== 'undefined' && typeof (window as any).google !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"google-login\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  async handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    await this.authService.loginWithToken(token);\r\n    if (this.authService.signedIn) {\r\n      this.router.navigate(['/dashboard']);\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./login.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
             "templateData": "<div id=\"google-login\"></div>\r\n"
         },
@@ -1154,7 +1452,7 @@
         },
         {
             "name": "RegisterComponent",
-            "id": "component-RegisterComponent-cd21468bb9f2436e6971b1adcd88a6df5db306f369b27e7b420bda7cf6974dc50654f52a715762940abb290f4d86e803acd525fc166f4dc749103a62ee839ab3",
+            "id": "component-RegisterComponent-5c92c553826a854c9fab65bb9d95206dd44d814700cce433ff8434648053eac4f3b35ac2543cd88d08fb0adbea671a19460b4859cdf5b4e16e5d15cb0996b1bf",
             "file": "src/app/components/register/register.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1184,11 +1482,14 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "void",
+                    "returnType": "any",
                     "typeParameters": [],
-                    "line": 50,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "modifierKind": [
+                        134
+                    ],
                     "jsdoctags": [
                         {
                             "name": "response",
@@ -1207,7 +1508,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 17,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1217,7 +1518,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1231,7 +1532,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\nimport { AuthService } from '../../services/auth.service';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './register.component.html',\r\n  styleUrl: './register.component.sass'\r\n})\r\nexport class RegisterComponent {\r\n\r\n  constructor(private authService: AuthService) { }\r\n\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signup',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleRegisterButton();\r\n  }\r\n\r\n  // Render Google's register button\r\n  renderGoogleRegisterButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"google-register\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n    this.authService.registerWithToken(token);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\nimport { AuthService } from '../../services/auth.service';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './register.component.html',\r\n  styleUrl: './register.component.sass'\r\n})\r\nexport class RegisterComponent {\r\n\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined' && typeof (window as any).google !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signup',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleRegisterButton();\r\n  }\r\n\r\n  // Render Google's register button\r\n  renderGoogleRegisterButton(): void {\r\n    if (typeof window !== 'undefined' && typeof (window as any).google !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"google-register\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  async handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    await this.authService.registerWithToken(token);\r\n    if (this.authService.signedIn) {\r\n      this.router.navigate(['/dashboard']);\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./register.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1247,13 +1548,28 @@
                         "type": "AuthService",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 12,
+                "line": 13,
                 "jsdoctags": [
                     {
                         "name": "authService",
                         "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -1449,7 +1765,27 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
-                "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    provideHttpClient(\r\n      withInterceptorsFromDi(),\r\n      withFetch()),\r\n    {\r\n      provide: 'SocialAuthServiceConfig',\r\n      useValue: {\r\n        autoLogin: false,\r\n        providers: [\r\n          {\r\n            id: GoogleLoginProvider.PROVIDER_ID,\r\n            provider: new GoogleLoginProvider(environment.googleClientId)\r\n          },\r\n        ],\r\n        onError: (err) => {\r\n          console.error(err);\r\n        }\r\n      } as SocialAuthServiceConfig,\r\n    },\r\n  ]\r\n}"
+                "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    provideHttpClient(withInterceptors([authInterceptor])),\r\n  ]\r\n}"
+            },
+            {
+                "name": "authGuard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/guards/auth.guard.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "CanActivateFn",
+                "defaultValue": "(route, state) => {\r\n  const authService = inject(AuthService);\r\n  const router = inject(Router);\r\n\r\n  if (authService.signedIn) {\r\n    return true;\r\n  }\r\n\r\n  router.navigate(['']);\r\n\r\n  return false;\r\n}"
+            },
+            {
+                "name": "authInterceptor",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/interceptors/auth.interceptor.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "HttpInterceptorFn",
+                "defaultValue": "(req, next) => {\r\n  const authService = inject(AuthService);\r\n  const accessToken = authService.getAccessToken();\r\n\r\n  const addAuthHeader = (request: HttpRequest<any>, accessToken: string | null) => {\r\n    if (accessToken) {\r\n      return request.clone({\r\n        headers: req.headers.set('Authorization', `Bearer ${accessToken}`),\r\n      });\r\n    }\r\n    return request;\r\n  }\r\n\r\n  const clonedRequest = addAuthHeader(req, accessToken);\r\n\r\n  return next(clonedRequest).pipe(\r\n    catchError((error) => {\r\n      // Verifies if response has error 401\r\n      if (error.status === 401) {\r\n        return authService.refreshAccessToken().pipe(\r\n          switchMap((newAccessToken) => {\r\n            const newRequest = addAuthHeader(req, newAccessToken);\r\n            return next(newRequest);\r\n          }),\r\n          catchError((refreshError) => {\r\n            authService.logout();\r\n            return throwError(() => refreshError);\r\n          }),\r\n        );\r\n      }\r\n      return throwError(() => error);\r\n    })\r\n  );\r\n}"
             },
             {
                 "name": "bootstrap",
@@ -1525,7 +1861,31 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ApplicationConfig",
-                    "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    provideHttpClient(\r\n      withInterceptorsFromDi(),\r\n      withFetch()),\r\n    {\r\n      provide: 'SocialAuthServiceConfig',\r\n      useValue: {\r\n        autoLogin: false,\r\n        providers: [\r\n          {\r\n            id: GoogleLoginProvider.PROVIDER_ID,\r\n            provider: new GoogleLoginProvider(environment.googleClientId)\r\n          },\r\n        ],\r\n        onError: (err) => {\r\n          console.error(err);\r\n        }\r\n      } as SocialAuthServiceConfig,\r\n    },\r\n  ]\r\n}"
+                    "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    provideHttpClient(withInterceptors([authInterceptor])),\r\n  ]\r\n}"
+                }
+            ],
+            "src/app/guards/auth.guard.ts": [
+                {
+                    "name": "authGuard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/guards/auth.guard.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "CanActivateFn",
+                    "defaultValue": "(route, state) => {\r\n  const authService = inject(AuthService);\r\n  const router = inject(Router);\r\n\r\n  if (authService.signedIn) {\r\n    return true;\r\n  }\r\n\r\n  router.navigate(['']);\r\n\r\n  return false;\r\n}"
+                }
+            ],
+            "src/app/interceptors/auth.interceptor.ts": [
+                {
+                    "name": "authInterceptor",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/interceptors/auth.interceptor.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "HttpInterceptorFn",
+                    "defaultValue": "(req, next) => {\r\n  const authService = inject(AuthService);\r\n  const accessToken = authService.getAccessToken();\r\n\r\n  const addAuthHeader = (request: HttpRequest<any>, accessToken: string | null) => {\r\n    if (accessToken) {\r\n      return request.clone({\r\n        headers: req.headers.set('Authorization', `Bearer ${accessToken}`),\r\n      });\r\n    }\r\n    return request;\r\n  }\r\n\r\n  const clonedRequest = addAuthHeader(req, accessToken);\r\n\r\n  return next(clonedRequest).pipe(\r\n    catchError((error) => {\r\n      // Verifies if response has error 401\r\n      if (error.status === 401) {\r\n        return authService.refreshAccessToken().pipe(\r\n          switchMap((newAccessToken) => {\r\n            const newRequest = addAuthHeader(req, newAccessToken);\r\n            return next(newRequest);\r\n          }),\r\n          catchError((refreshError) => {\r\n            authService.logout();\r\n            return throwError(() => refreshError);\r\n          }),\r\n        );\r\n      }\r\n      return throwError(() => error);\r\n    })\r\n  );\r\n}"
                 }
             ],
             "src/main.server.ts": [
@@ -1614,7 +1974,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -1680,7 +2040,7 @@
                 "linktype": "component",
                 "name": "LoginComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1699,6 +2059,26 @@
                 "name": "RegisterComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/guards/auth.guard.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "authGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/interceptors/auth.interceptor.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "authInterceptor",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -1729,6 +2109,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/pages/dashboard-page/dashboard-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DashboardPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/pages/home/home.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1742,9 +2131,9 @@
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "AuthService",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
-                "status": "low"
+                "coveragePercent": 61,
+                "coverageCount": "8/13",
+                "status": "good"
             },
             {
                 "filePath": "src/app/services/login-modal.service.ts",

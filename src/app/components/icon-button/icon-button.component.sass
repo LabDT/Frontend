@@ -1,0 +1,29 @@
+@use "../../../sass/colors" as *
+@use "../../../sass/fonts" as *
+@use "../../../sass/mixins" as *
+
+.icon-button
+  +drop-shadow-soft
+  border: none
+  border-radius: 50%
+  background-color: $color-secondary
+  color: white
+
+  &:focus
+    +outline
+
+  &:hover
+    cursor: pointer
+    background-color: $color-secondary-highlight
+
+.icon-button.small
+  width: 21px
+  height: 21px
+
+.icon-button.medium
+  width: 30px
+  height: 30px
+
+.icon-button.large
+  width: 40px
+  height: 40px

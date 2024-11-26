@@ -11,7 +11,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent {
   /** Styling variant of the button */
   @Input()
-  variant: 'primary'
+  variant:
+    'primary'
     | 'secondary'
     | 'light'
     | 'header'
@@ -27,7 +28,7 @@ export class ButtonComponent {
   fill: boolean = false;
 
   /**
-   * Button contents
+   * Button content
    *
    * @required
    */

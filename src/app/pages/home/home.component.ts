@@ -11,5 +11,4 @@ import { RegisterModalComponent } from "../../modals/register-modal/register-mod
   styleUrl: './home.component.sass'
 })
 export class HomeComponent {
-
 }
