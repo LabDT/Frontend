@@ -3,7 +3,17 @@
   <app-register-modal></app-register-modal>
   <img src="/images/blob_01.svg" alt="Blob 01" class="blob-01">
   <img src="/images/blob_02.svg" alt="Blob 02" class="blob-02">
-  <div class="app-header-container">
-    <app-header></app-header>
+  <div class="home-container">
+    <div class="header-container">
+      <app-header></app-header>
+    </div>
+    <div class="search-container">
+      <p>The <span class="bold primary">DT technique</span> you're searching for is <span class="bold secondary">right here.</span></p>
+      <app-input
+        [variant]="'search'"
+        (onClick)="onSearch()"
+      >
+      </app-input>
+    </div>
   </div>
 </div>
