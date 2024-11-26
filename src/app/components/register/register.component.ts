@@ -14,7 +14,7 @@ export class RegisterComponent {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && typeof (window as any).google !== 'undefined') {
       // Initialize Google Identity with cliend_id and callback
       (window as any).google.accounts.id.initialize({
         client_id: environment.googleClientId,
@@ -30,7 +30,7 @@ export class RegisterComponent {
 
   // Render Google's register button
   renderGoogleRegisterButton(): void {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && typeof (window as any).google !== 'undefined') {
       (window as any).google.accounts.id.renderButton(
         document.getElementById("google-register"),
         {
@@ -49,7 +49,6 @@ export class RegisterComponent {
   // Callback function
   handleCredentialResponse(response: any) {
     const token = response.credential;
-    console.log("Token ID:", token);
     this.authService.registerWithToken(token);
   }
 }

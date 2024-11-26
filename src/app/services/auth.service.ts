@@ -11,6 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  /** Sends a registration request */
   registerWithToken(token: string) {
     if (this.isLoading) {
       return;
@@ -33,6 +34,33 @@ export class AuthService {
       response => {},
       error => {
         console.error("Failed to register", error);
+      }
+    )
+  }
+
+  /** Sends a login request */
+  loginWithToken(token: string) {
+    if (this.isLoading) {
+      return;
+    }
+
+    this.isLoading = true;
+
+    const payload = { token };
+
+    return this.http.post(`${environment.backendUrl}/user/login`, payload)
+      .pipe(
+        tap(response => {
+          console.log("Successfully logged", response);
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+    .subscribe(
+      response => {},
+      error => {
+        console.error("Failed to login", error);
       }
     )
   }

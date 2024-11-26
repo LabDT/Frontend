@@ -3,6 +3,87 @@
     "interfaces": [],
     "injectables": [
         {
+            "name": "AuthService",
+            "id": "injectable-AuthService-dc297663fb196f6390d01cd8a88e4c7a333a9e082067b4e3490ae57748b699384079179267d234f3664ee1d5925100203f9fd714169eeb1aea3c8058f0442e09",
+            "file": "src/app/services/auth.service.ts",
+            "properties": [
+                {
+                    "name": "isLoading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methods": [
+                {
+                    "name": "registerWithToken",
+                    "args": [
+                        {
+                            "name": "token",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "token",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { environment } from '../../environments/environment';\r\nimport { finalize, tap } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthService {\r\n  isLoading: boolean = false;\r\n\r\n  constructor(private http: HttpClient) { }\r\n\r\n  registerWithToken(token: string) {\r\n    if (this.isLoading) {\r\n      return;\r\n    }\r\n\r\n    this.isLoading = true;\r\n\r\n    const payload = { token };\r\n\r\n    return this.http.post(`${environment.backendUrl}/user/register`, payload)\r\n      .pipe(\r\n        tap(response => {\r\n          console.log(\"Successfully registered\", response);\r\n        }),\r\n        finalize(() => {\r\n          this.isLoading = false;\r\n        })\r\n      )\r\n    .subscribe(\r\n      response => {},\r\n      error => {\r\n        console.error(\"Failed to register\", error);\r\n      }\r\n    )\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
             "name": "LoginModalService",
             "id": "injectable-LoginModalService-c6da17c14377ae32a8afebee5bc1c472ed71e97aa4aa3709f50860ec9b37c8085c31f81336fecf5f04ba02aea0a5ee4b0311b6ed1ae2d455e61932439d939acb",
             "file": "src/app/services/login-modal.service.ts",
@@ -140,7 +221,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-4f7aefafe10a024c061d373541d243700a6bf8efbed8a143da3a4d6bf7bedbb9224c7739bbcd9821d177f63ff70ad12b26d2115b173c84faef6d31ee721e95f4",
+            "id": "component-AppComponent-11077c14dbdc96c6939181b37a82e8901c640903cc07f9e9f8341c00cf970bb7f14a8d1e25c2bff14734f45b59563505876a996e49dae35e59c05319919a491b",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -166,7 +247,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 17
+                    "line": 16
                 },
                 {
                     "name": "user",
@@ -176,7 +257,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 15
                 }
             ],
             "methodsClass": [
@@ -186,7 +267,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 19,
+                    "line": 18,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -199,20 +280,12 @@
             "imports": [
                 {
                     "name": "RouterOutlet"
-                },
-                {
-                    "name": "SocialLoginModule",
-                    "type": "module"
-                },
-                {
-                    "name": "LoginComponent",
-                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {  SocialAuthService, SocialLoginModule, SocialUser } from '@abacritt/angularx-social-login';\r\nimport { Component } from '@angular/core';\r\nimport { RouterOutlet } from '@angular/router';\r\nimport { LoginComponent } from \"./components/login/login.component\";\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet, SocialLoginModule, LoginComponent],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.sass'\r\n})\r\nexport class AppComponent {\r\n  constructor(private authService: SocialAuthService) {}\r\n\r\n  user!: SocialUser;\r\n  loggedIn!: boolean;\r\n\r\n  ngOnInit(): void {\r\n    this.authService.authState.subscribe((user) => {\r\n      this.user = user;\r\n      this.loggedIn = (user != null);\r\n    });\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import {  SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';\r\nimport { Component } from '@angular/core';\r\nimport { RouterOutlet } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.sass'\r\n})\r\nexport class AppComponent {\r\n  constructor(private authService: SocialAuthService) {}\r\n\r\n  user!: SocialUser;\r\n  loggedIn!: boolean;\r\n\r\n  ngOnInit(): void {\r\n    this.authService.authState.subscribe((user) => {\r\n      this.user = user;\r\n      this.loggedIn = (user != null);\r\n    });\r\n  }\r\n\r\n}\r\n",
             "styleUrl": "./app.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -230,7 +303,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 13,
+                "line": 12,
                 "jsdoctags": [
                     {
                         "name": "authService",
@@ -613,7 +686,7 @@
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-1f9b89ec7d3dd743ee7a1372e36f7c50ed72ab0b31dec5b90203f62a5d83eae74e11d74e0a0ee4d29b83245dff9fd9be3b10a61eaeb8b024e03e0776b3d25ba0",
+            "id": "component-HomeComponent-7c39fd5d99c6e1df058a889646b6a154a1732f79fc551ac97214dd925e6e8d74027884934aa8206006f1374c259dfba01192edb1d3195d50bc3f02836105aaeb",
             "file": "src/app/pages/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -647,20 +720,20 @@
                     "type": "component"
                 },
                 {
-                    "name": "LoginComponent",
+                    "name": "RegisterModalComponent",
                     "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { HeaderComponent } from \"../../components/header/header.component\";\r\nimport { LoginModalComponent } from \"../../modals/login-modal/login-modal.component\";\r\nimport { LoginComponent } from \"../../components/login/login.component\";\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  standalone: true,\r\n  imports: [HeaderComponent, LoginModalComponent, LoginComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.sass'\r\n})\r\nexport class HomeComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { HeaderComponent } from \"../../components/header/header.component\";\r\nimport { LoginModalComponent } from \"../../modals/login-modal/login-modal.component\";\r\nimport { RegisterModalComponent } from \"../../modals/register-modal/register-modal.component\";\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  standalone: true,\r\n  imports: [HeaderComponent, LoginModalComponent, RegisterModalComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.sass'\r\n})\r\nexport class HomeComponent {\r\n\r\n}\r\n",
             "styleUrl": "./home.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div>\r\n  <app-login-modal></app-login-modal>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <app-header></app-header>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <app-login-modal></app-login-modal>\r\n  <app-register-modal></app-register-modal>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <app-header></app-header>\r\n</div>\r\n"
         },
         {
             "name": "InputComponent",
@@ -773,7 +846,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-3dca8f398b024ad892bb110f6bbe8d95bdc4d6a2e2bb83ae64c88574e65fd873510026661ec51af897d8e095274905bc152e24916b45a2aee5df2f6133d048ae",
+            "id": "component-LoginComponent-64c78f516a3db073c0aa15357cfb6e280a74c4fd43a28b107078ec84fbf6e54a6704090bb5e0ac6a0b82e69ac381c3370276ab5c3d2c1d7a9138224415f4d201",
             "file": "src/app/components/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -850,17 +923,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleLoginButton();\r\n  }\r\n\r\n  // Render Google's login button\r\n  renderGoogleLoginButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"buttonDiv\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.sass'\r\n})\r\nexport class LoginComponent {\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signin',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleLoginButton();\r\n  }\r\n\r\n  // Render Google's login button\r\n  renderGoogleLoginButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"google-login\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n  }\r\n}\r\n",
             "styleUrl": "./login.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div id=\"buttonDiv\"></div>\r\n"
+            "templateData": "<div id=\"google-login\"></div>\r\n"
         },
         {
             "name": "LoginModalComponent",
-            "id": "component-LoginModalComponent-fc098099825e59e7663152e960b87eaee56b2b008f0c0b0f5e0a2401b3d766e2163846dc866103df6347e6feaf52fb09af6a90de3787ecce33f131a678e6353a",
+            "id": "component-LoginModalComponent-d94655d05d3edd2bceca6fef4ee5025fd5d1df9221961d5950640720b8a7e848c93d8e1c4cdf19978dd4f9d62ec68a2be73114e7e6111dbbc84a295da688a441",
             "file": "src/app/modals/login-modal/login-modal.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -883,7 +956,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nIs the modal currently active?",
                     "description": "<p>Is the modal currently active?</p>\n",
-                    "line": 21,
+                    "line": 22,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -899,7 +972,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 23,
+                    "line": 24,
                     "modifierKind": [
                         123
                     ]
@@ -912,7 +985,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -922,7 +995,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -932,7 +1005,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "openRegisterModal",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -971,7 +1054,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { BaseModalComponent } from \"../base-modal/base-modal.component\";\r\nimport { CommonModule } from '@angular/common';\r\nimport { LogoComponent } from \"../../components/logo/logo.component\";\r\nimport { InputComponent } from \"../../components/input/input.component\";\r\nimport { ButtonComponent } from \"../../components/button/button.component\";\r\nimport { Subscription } from 'rxjs';\r\nimport { LoginModalService } from '../../services/login-modal.service';\r\nimport { LoginComponent } from \"../../components/login/login.component\";\r\n\r\n@Component({\r\n  selector: 'app-login-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, BaseModalComponent, LogoComponent, InputComponent, ButtonComponent, LoginComponent],\r\n  templateUrl: './login-modal.component.html',\r\n  styleUrl: './login-modal.component.sass'\r\n})\r\nexport class LoginModalComponent {\r\n  /** Is the modal currently active? */\r\n  @Input()\r\n  isActive: boolean = false;\r\n\r\n  private subscription: Subscription = new Subscription;\r\n\r\n  constructor(private loginModalService: LoginModalService) { }\r\n\r\n  ngOnInit() {\r\n    this.subscription = this.loginModalService.isActive$.subscribe(\r\n      isActive => this.isActive = isActive\r\n    )\r\n  }\r\n\r\n  ngOnDestroy() {\r\n    if (this.subscription) {\r\n      this.subscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n  closeModal() {\r\n    this.loginModalService.close();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { BaseModalComponent } from \"../base-modal/base-modal.component\";\r\nimport { CommonModule } from '@angular/common';\r\nimport { LogoComponent } from \"../../components/logo/logo.component\";\r\nimport { InputComponent } from \"../../components/input/input.component\";\r\nimport { ButtonComponent } from \"../../components/button/button.component\";\r\nimport { Subscription } from 'rxjs';\r\nimport { LoginModalService } from '../../services/login-modal.service';\r\nimport { LoginComponent } from \"../../components/login/login.component\";\r\nimport { RegisterModalService } from '../../services/register-modal.service';\r\n\r\n@Component({\r\n  selector: 'app-login-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, BaseModalComponent, LogoComponent, InputComponent, ButtonComponent, LoginComponent],\r\n  templateUrl: './login-modal.component.html',\r\n  styleUrl: './login-modal.component.sass'\r\n})\r\nexport class LoginModalComponent {\r\n  /** Is the modal currently active? */\r\n  @Input()\r\n  isActive: boolean = false;\r\n\r\n  private subscription: Subscription = new Subscription;\r\n\r\n  constructor(\r\n    private loginModalService: LoginModalService,\r\n    private registerModalService: RegisterModalService,\r\n  ) { }\r\n\r\n  ngOnInit() {\r\n    this.subscription = this.loginModalService.isActive$.subscribe(\r\n      isActive => this.isActive = isActive\r\n    )\r\n  }\r\n\r\n  ngOnDestroy() {\r\n    if (this.subscription) {\r\n      this.subscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n  closeModal() {\r\n    this.loginModalService.close();\r\n  }\r\n\r\n  openRegisterModal() {\r\n    this.closeModal();\r\n    this.registerModalService.open();\r\n  }\r\n}\r\n",
             "styleUrl": "./login-modal.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -987,9 +1070,15 @@
                         "type": "LoginModalService",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "registerModalService",
+                        "type": "RegisterModalService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 23,
+                "line": 24,
                 "jsdoctags": [
                     {
                         "name": "loginModalService",
@@ -999,11 +1088,20 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "registerModalService",
+                        "type": "RegisterModalService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
             },
             "extends": [],
-            "templateData": "<app-base-modal\r\n  [isActive]=\"isActive\"\r\n  [closeButton]=\"true\"\r\n  (onClose)=\"closeModal()\"\r\n>\r\n  <app-logo></app-logo>\r\n  <h1 class=\"header\">\r\n    Log in to continue\r\n  </h1>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'email'\"\r\n      [label]=\"'Email'\"\r\n      [placeholder]=\"'your.email@mail.com'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"password-forgot\">\r\n    Forgot your password?\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-button\r\n      [variant]=\"'primary'\"\r\n      [label]=\"'Log In'\"\r\n      [fill]=\"true\"\r\n    ></app-button>\r\n  </div>\r\n  <span class=\"or\">\r\n    OR\r\n  </span>\r\n  <div class=\"expander\">\r\n    <app-login></app-login>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <p class=\"tos\">\r\n      By continuing you agree to LabDT’s <span class=\"highlight\">Terms of Service</span> and acknowledge you’ve read our <span class=\"highlight\">Privacy Policy</span>.\r\n    </p>\r\n    <p class=\"tos\">\r\n       <p>\r\n    <hr>\r\n    <p class=\"sign-up\">\r\n      Not on LabDT yet? Sign up\r\n    </p>\r\n  </div>\r\n</app-base-modal>\r\n"
+            "templateData": "<app-base-modal\r\n  [isActive]=\"isActive\"\r\n  [closeButton]=\"true\"\r\n  (onClose)=\"closeModal()\"\r\n>\r\n  <app-logo></app-logo>\r\n  <h1 class=\"header\">\r\n    Log in to continue\r\n  </h1>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'email'\"\r\n      [label]=\"'Email'\"\r\n      [placeholder]=\"'your.email@mail.com'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"password-forgot\">\r\n    Forgot your password?\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-button\r\n      [variant]=\"'primary'\"\r\n      [label]=\"'Log In'\"\r\n      [fill]=\"true\"\r\n    ></app-button>\r\n  </div>\r\n  <span class=\"or\">\r\n    OR\r\n  </span>\r\n  <div class=\"expander\">\r\n    <app-login></app-login>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <p class=\"tos\">\r\n      By continuing you agree to LabDT’s <span class=\"highlight\">Terms of Service</span> and acknowledge you’ve read our <span class=\"highlight\">Privacy Policy</span>.\r\n    </p>\r\n    <p class=\"tos\">\r\n       <p>\r\n    <hr>\r\n    <p class=\"sign-up\" (click)=\"openRegisterModal()\">\r\n      Not on LabDT yet? Sign up\r\n    </p>\r\n  </div>\r\n</app-base-modal>\r\n"
         },
         {
             "name": "LogoComponent",
@@ -1056,7 +1154,7 @@
         },
         {
             "name": "RegisterComponent",
-            "id": "component-RegisterComponent-31e6957b734164a50429ecf4df61d4ad2bad885fc0f926fab71c16e4a46783be4019155f5f756de637e6c6b191aedc791c5c4c612b0ca5680590910407505294",
+            "id": "component-RegisterComponent-cd21468bb9f2436e6971b1adcd88a6df5db306f369b27e7b420bda7cf6974dc50654f52a715762940abb290f4d86e803acd525fc166f4dc749103a62ee839ab3",
             "file": "src/app/components/register/register.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1088,7 +1186,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 46,
+                    "line": 50,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1109,7 +1207,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 16,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1119,7 +1217,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1133,17 +1231,43 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './register.component.html',\r\n  styleUrl: './register.component.sass'\r\n})\r\nexport class RegisterComponent {\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signup',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleRegisterButton();\r\n  }\r\n\r\n  // Render Google's register button\r\n  renderGoogleRegisterButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"buttonDiv\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { environment } from '../../../environments/environment';\r\nimport { AuthService } from '../../services/auth.service';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './register.component.html',\r\n  styleUrl: './register.component.sass'\r\n})\r\nexport class RegisterComponent {\r\n\r\n  constructor(private authService: AuthService) { }\r\n\r\n  ngOnInit(): void {\r\n    if (typeof window !== 'undefined') {\r\n      // Initialize Google Identity with cliend_id and callback\r\n      (window as any).google.accounts.id.initialize({\r\n        client_id: environment.googleClientId,\r\n        callback: this.handleCredentialResponse.bind(this),\r\n        context: 'signup',\r\n        ux_mode: 'popup',\r\n        auto_select: false,\r\n      });\r\n    }\r\n\r\n    this.renderGoogleRegisterButton();\r\n  }\r\n\r\n  // Render Google's register button\r\n  renderGoogleRegisterButton(): void {\r\n    if (typeof window !== 'undefined') {\r\n      (window as any).google.accounts.id.renderButton(\r\n        document.getElementById(\"google-register\"),\r\n        {\r\n          type: \"standard\",\r\n          shape: \"pill\",\r\n          theme: \"outline\",\r\n          text: \"continue_with\",\r\n          size: \"large\",\r\n          logo_alignment: \"left\",\r\n          width: \"360\"\r\n        }\r\n      );\r\n    }\r\n  }\r\n\r\n  // Callback function\r\n  handleCredentialResponse(response: any) {\r\n    const token = response.credential;\r\n    console.log(\"Token ID:\", token);\r\n    this.authService.registerWithToken(token);\r\n  }\r\n}\r\n",
             "styleUrl": "./register.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<div id=\"buttonDiv\"></div>\r\n"
+            "templateData": "<div id=\"google-register\"></div>\r\n"
         },
         {
             "name": "RegisterModalComponent",
-            "id": "component-RegisterModalComponent-97a4a40c2740937f764a45f72cef8c1fd7baf52b5352736c48996560c36966cd782d0a78b03b8255fab2dbe6803a0c8ed14c4673c461000c4df914e331b2230e",
+            "id": "component-RegisterModalComponent-acd13703a112ba034d466a7b3226e39b6feec9d589806591e5992fcc8cd331c5b2d6a6d3104165e5fc51c8d75cf404657b70ff4b2359632470425c997ba7e83c",
             "file": "src/app/modals/register-modal/register-modal.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1166,7 +1290,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nIs the modal currently active?",
                     "description": "<p>Is the modal currently active?</p>\n",
-                    "line": 21,
+                    "line": 22,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -1182,7 +1306,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 23,
+                    "line": 24,
                     "modifierKind": [
                         123
                     ]
@@ -1195,7 +1319,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1205,7 +1329,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1215,7 +1339,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "openLoginModal",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1254,7 +1388,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { Subscription } from 'rxjs';\r\nimport { RegisterModalService } from '../../services/register-modal.service';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BaseModalComponent } from '../base-modal/base-modal.component';\r\nimport { LogoComponent } from '../../components/logo/logo.component';\r\nimport { InputComponent } from '../../components/input/input.component';\r\nimport { ButtonComponent } from '../../components/button/button.component';\r\nimport { RegisterComponent } from \"../../components/register/register.component\";\r\n\r\n@Component({\r\n  selector: 'app-register-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, BaseModalComponent, LogoComponent, InputComponent, ButtonComponent, RegisterComponent],\r\n  templateUrl: './register-modal.component.html',\r\n  styleUrl: './register-modal.component.sass'\r\n})\r\nexport class RegisterModalComponent {\r\n  /** Is the modal currently active? */\r\n  @Input()\r\n  isActive: boolean = false;\r\n\r\n  private subscription: Subscription = new Subscription;\r\n\r\n  constructor(private registerModalService: RegisterModalService) {}\r\n\r\n  ngOnInit() {\r\n    this.subscription = this.registerModalService.isActive$.subscribe(\r\n      isActive => this.isActive = isActive\r\n    )\r\n  }\r\n\r\n  ngOnDestroy() {\r\n    if (this.subscription) {\r\n      this.subscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n  closeModal() {\r\n    this.registerModalService.close();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { Subscription } from 'rxjs';\r\nimport { RegisterModalService } from '../../services/register-modal.service';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BaseModalComponent } from '../base-modal/base-modal.component';\r\nimport { LogoComponent } from '../../components/logo/logo.component';\r\nimport { InputComponent } from '../../components/input/input.component';\r\nimport { ButtonComponent } from '../../components/button/button.component';\r\nimport { RegisterComponent } from \"../../components/register/register.component\";\r\nimport { LoginModalService } from '../../services/login-modal.service';\r\n\r\n@Component({\r\n  selector: 'app-register-modal',\r\n  standalone: true,\r\n  imports: [CommonModule, BaseModalComponent, LogoComponent, InputComponent, ButtonComponent, RegisterComponent],\r\n  templateUrl: './register-modal.component.html',\r\n  styleUrl: './register-modal.component.sass'\r\n})\r\nexport class RegisterModalComponent {\r\n  /** Is the modal currently active? */\r\n  @Input()\r\n  isActive: boolean = false;\r\n\r\n  private subscription: Subscription = new Subscription;\r\n\r\n  constructor(\r\n    private registerModalService: RegisterModalService,\r\n    private loginModalService: LoginModalService,\r\n  ) { }\r\n\r\n  ngOnInit() {\r\n    this.subscription = this.registerModalService.isActive$.subscribe(\r\n      isActive => this.isActive = isActive\r\n    )\r\n  }\r\n\r\n  ngOnDestroy() {\r\n    if (this.subscription) {\r\n      this.subscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n  closeModal() {\r\n    this.registerModalService.close();\r\n  }\r\n\r\n  openLoginModal() {\r\n    this.closeModal();\r\n    this.loginModalService.open();\r\n  }\r\n}\r\n",
             "styleUrl": "./register-modal.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1270,9 +1404,15 @@
                         "type": "RegisterModalService",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "loginModalService",
+                        "type": "LoginModalService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 23,
+                "line": 24,
                 "jsdoctags": [
                     {
                         "name": "registerModalService",
@@ -1282,11 +1422,20 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "loginModalService",
+                        "type": "LoginModalService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
             },
             "extends": [],
-            "templateData": "<app-base-modal\r\n  [isActive]=\"isActive\"\r\n  [closeButton]=\"true\"\r\n  (onClose)=\"closeModal()\"\r\n>\r\n  <app-logo></app-logo>\r\n  <h1 class=\"header\">\r\n    Log in to continue\r\n  </h1>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'email'\"\r\n      [label]=\"'Email'\"\r\n      [placeholder]=\"'your.email@mail.com'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password confirmation'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-button\r\n      [variant]=\"'primary'\"\r\n      [label]=\"'Log In'\"\r\n      [fill]=\"true\"\r\n    ></app-button>\r\n  </div>\r\n  <span class=\"or\">\r\n    OR\r\n  </span>\r\n  <div class=\"expander\">\r\n    <app-register></app-register>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <p class=\"tos\">\r\n      By continuing you agree to LabDT’s <span class=\"highlight\">Terms of Service</span> and acknowledge you’ve read our <span class=\"highlight\">Privacy Policy</span>.\r\n    </p>\r\n    <p class=\"tos\">\r\n       <p>\r\n    <hr>\r\n    <p class=\"sign-up\">\r\n      Not on LabDT yet? Sign up\r\n    </p>\r\n  </div>\r\n</app-base-modal>\r\n"
+            "templateData": "<app-base-modal\r\n  [isActive]=\"isActive\"\r\n  [closeButton]=\"true\"\r\n  (onClose)=\"closeModal()\"\r\n>\r\n  <app-logo></app-logo>\r\n  <h1 class=\"header\">\r\n    Sign up to continue\r\n  </h1>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'email'\"\r\n      [label]=\"'Email'\"\r\n      [placeholder]=\"'your.email@mail.com'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password confirmation'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-button\r\n      [variant]=\"'primary'\"\r\n      [label]=\"'Sign Up'\"\r\n      [fill]=\"true\"\r\n    ></app-button>\r\n  </div>\r\n  <span class=\"or\">\r\n    OR\r\n  </span>\r\n  <div class=\"expander\">\r\n    <app-register></app-register>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <p class=\"tos\">\r\n      By continuing you agree to LabDT’s <span class=\"highlight\">Terms of Service</span> and acknowledge you’ve read our <span class=\"highlight\">Privacy Policy</span>.\r\n    </p>\r\n    <p class=\"tos\">\r\n       <p>\r\n    <hr>\r\n    <p class=\"sign-up\" (click)=\"openLoginModal()\">\r\n      Already on LabDT? Sign in\r\n    </p>\r\n  </div>\r\n</app-base-modal>\r\n"
         }
     ],
     "modules": [],
@@ -1300,7 +1449,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
-                "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    {\r\n      provide: 'SocialAuthServiceConfig',\r\n      useValue: {\r\n        autoLogin: false,\r\n        providers: [\r\n          {\r\n            id: GoogleLoginProvider.PROVIDER_ID,\r\n            provider: new GoogleLoginProvider(environment.googleClientId)\r\n          },\r\n        ],\r\n        onError: (err) => {\r\n          console.error(err);\r\n        }\r\n      } as SocialAuthServiceConfig,\r\n    },\r\n  ]\r\n}"
+                "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    provideHttpClient(\r\n      withInterceptorsFromDi(),\r\n      withFetch()),\r\n    {\r\n      provide: 'SocialAuthServiceConfig',\r\n      useValue: {\r\n        autoLogin: false,\r\n        providers: [\r\n          {\r\n            id: GoogleLoginProvider.PROVIDER_ID,\r\n            provider: new GoogleLoginProvider(environment.googleClientId)\r\n          },\r\n        ],\r\n        onError: (err) => {\r\n          console.error(err);\r\n        }\r\n      } as SocialAuthServiceConfig,\r\n    },\r\n  ]\r\n}"
             },
             {
                 "name": "bootstrap",
@@ -1330,7 +1479,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  googleClientId: '513029206696-cne70a32e488cfk87ls98g6e1rk5sbpu.apps.googleusercontent.com',\n}"
+                "defaultValue": "{\n  googleClientId: '513029206696-cne70a32e488cfk87ls98g6e1rk5sbpu.apps.googleusercontent.com',\n  backendUrl: 'http://localhost:3000'\n}"
             },
             {
                 "name": "environment",
@@ -1340,7 +1489,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  googleClientId: '',\r\n}"
+                "defaultValue": "{\r\n  googleClientId: '',\r\n  backendUrl: '',\r\n}"
             },
             {
                 "name": "environment",
@@ -1350,7 +1499,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  googleClientId: '',\n}"
+                "defaultValue": "{\n  googleClientId: '',\n  backendUrl: ''\n}"
             },
             {
                 "name": "serverConfig",
@@ -1376,7 +1525,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ApplicationConfig",
-                    "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    {\r\n      provide: 'SocialAuthServiceConfig',\r\n      useValue: {\r\n        autoLogin: false,\r\n        providers: [\r\n          {\r\n            id: GoogleLoginProvider.PROVIDER_ID,\r\n            provider: new GoogleLoginProvider(environment.googleClientId)\r\n          },\r\n        ],\r\n        onError: (err) => {\r\n          console.error(err);\r\n        }\r\n      } as SocialAuthServiceConfig,\r\n    },\r\n  ]\r\n}"
+                    "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n    provideClientHydration(),\r\n    provideHttpClient(\r\n      withInterceptorsFromDi(),\r\n      withFetch()),\r\n    {\r\n      provide: 'SocialAuthServiceConfig',\r\n      useValue: {\r\n        autoLogin: false,\r\n        providers: [\r\n          {\r\n            id: GoogleLoginProvider.PROVIDER_ID,\r\n            provider: new GoogleLoginProvider(environment.googleClientId)\r\n          },\r\n        ],\r\n        onError: (err) => {\r\n          console.error(err);\r\n        }\r\n      } as SocialAuthServiceConfig,\r\n    },\r\n  ]\r\n}"
                 }
             ],
             "src/main.server.ts": [
@@ -1422,7 +1571,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  googleClientId: '513029206696-cne70a32e488cfk87ls98g6e1rk5sbpu.apps.googleusercontent.com',\n}"
+                    "defaultValue": "{\n  googleClientId: '513029206696-cne70a32e488cfk87ls98g6e1rk5sbpu.apps.googleusercontent.com',\n  backendUrl: 'http://localhost:3000'\n}"
                 }
             ],
             "src/environments/environment.production.ts": [
@@ -1434,7 +1583,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  googleClientId: '',\r\n}"
+                    "defaultValue": "{\r\n  googleClientId: '',\r\n  backendUrl: '',\r\n}"
                 }
             ],
             "src/environments/environment.ts": [
@@ -1446,7 +1595,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  googleClientId: '',\n}"
+                    "defaultValue": "{\n  googleClientId: '',\n  backendUrl: ''\n}"
                 }
             ]
         },
@@ -1456,7 +1605,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 18,
+        "count": 17,
         "status": "low",
         "files": [
             {
@@ -1549,7 +1698,7 @@
                 "linktype": "component",
                 "name": "RegisterComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1566,8 +1715,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "LoginModalComponent",
-                "coveragePercent": 14,
-                "coverageCount": "1/7",
+                "coveragePercent": 12,
+                "coverageCount": "1/8",
                 "status": "low"
             },
             {
@@ -1575,8 +1724,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "RegisterModalComponent",
-                "coveragePercent": 14,
-                "coverageCount": "1/7",
+                "coveragePercent": 12,
+                "coverageCount": "1/8",
                 "status": "low"
             },
             {
@@ -1586,6 +1735,15 @@
                 "name": "HomeComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/auth.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AuthService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
