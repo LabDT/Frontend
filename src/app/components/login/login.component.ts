@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     if (typeof window !== 'undefined' && typeof (window as any).google !== 'undefined') {
@@ -47,8 +48,11 @@ export class LoginComponent {
   }
 
   // Callback function
-  handleCredentialResponse(response: any) {
+  async handleCredentialResponse(response: any) {
     const token = response.credential;
-    this.authService.loginWithToken(token);
+    await this.authService.loginWithToken(token);
+    if (this.authService.signedIn) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 }
