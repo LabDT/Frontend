@@ -20,6 +20,12 @@ export class TableComponent {
   /** Model descriptor for the data */
   model: any[] = [];
 
+  /** Main identifier for each entry */
+  identifier: number = 0;
+
+  /** Main display for each entry */
+  display: number = 0;
+
   /** Array of columns */
   columns: { key: string; title: string }[] = [];
 
@@ -35,7 +41,9 @@ export class TableComponent {
     // Retrieve model
     this.crudService.model(this.endpoint).subscribe({
       next: (data) => {
-        this.model = data;
+        this.model = data.model;
+        this.identifier = data.identifier;
+        this.display = data.display;
         this.model.forEach(model => {
           this.columns.push({
             key: model.name,
@@ -48,19 +56,33 @@ export class TableComponent {
       },
     });
     // Retrieve data
-    this.crudService.read(this.endpoint).subscribe({
-      next: (data) => {
-        data.entries.forEach((data: any) => {
-          this.rows.push(data);
-        });
-      },
-      error: (error) => {
-        throw Error(`Failed to fetch data for ${this.endpoint}:`, error);
-      },
-    })
+    this.refresh();
   }
 
   onDelete(rowIndex: number) {
-    this.deleteModalService.open(this.rows[rowIndex].name);
+    const row = this.rows[rowIndex];
+    const id = row[this.model[this.identifier].name];
+    const display = row[this.model[this.display].name];
+    this.deleteModalService.open(
+      display,
+      this.endpoint,
+      id,
+      () => this.refresh(),
+    );
+  }
+
+  refresh() {
+    let rows: any = [];
+    this.crudService.read(this.endpoint).subscribe({
+      next: (data) => {
+        data.entries.forEach((data: any) => {
+          rows.push(data);
+        });
+        this.rows = rows;
+      },
+      error: (error) => {
+        throw Error(`Failed to fetch data from ${this.endpoint}:`, error);
+      },
+    });
   }
 }

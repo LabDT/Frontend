@@ -5,7 +5,7 @@
   [deleteButton]="true"
   (onClose)="closeModal()"
   (onNo)="closeModal()"
-  (onDelete)="onDelete.emit($event)"
+  (onDelete)="deleteData()"
 >
   <p>Are you sure you want to delete <span>{{ what }}</span>?</p>
 </app-base-modal>

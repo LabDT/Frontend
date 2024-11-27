@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseModalComponent } from '../base-modal/base-modal.component';
-import { Subscription } from 'rxjs';
+import { Subscription, finalize } from 'rxjs';
 import { DeleteModalService } from '../../services/delete-modal.service';
+import { CrudService } from '../../services/crud.service';
 
 @Component({
   selector: 'app-delete-modal',
@@ -16,18 +17,22 @@ export class DeleteModalComponent {
   isActive: boolean = false;
 
   /** What is being deleted? */
-  @Input()
   what: string = 'this';
 
-  /** Delete handler */
-  @Output()
-  onDelete = new EventEmitter<Event>();
+  /** Data endpoint */
+  endpoint: string = '';
+
+  /** Data identifier */
+  identifier: any = null;
 
   private isActiveSubscription: Subscription = new Subscription;
   private whatSubscription: Subscription = new Subscription;
+  private endpointSubscription: Subscription = new Subscription;
+  private identifierSubscription: Subscription = new Subscription;
 
   constructor(
     private deleteModalService: DeleteModalService,
+    private crudService: CrudService,
   ) { }
 
   ngOnInit() {
@@ -36,6 +41,12 @@ export class DeleteModalComponent {
     );
     this.whatSubscription = this.deleteModalService.what$.subscribe(
       what => this.what = what
+    );
+    this.endpointSubscription = this.deleteModalService.endpoint$.subscribe(
+      endpoint => this.endpoint = endpoint
+    );
+    this.identifierSubscription = this.deleteModalService.identifier$.subscribe(
+      identifier => this.identifier = identifier
     );
   }
 
@@ -46,9 +57,29 @@ export class DeleteModalComponent {
     if (this.whatSubscription) {
       this.whatSubscription.unsubscribe();
     }
+    if (this.endpointSubscription) {
+      this.endpointSubscription.unsubscribe();
+    }
+    if (this.identifierSubscription) {
+      this.identifierSubscription.unsubscribe();
+    }
   }
 
   closeModal() {
     this.deleteModalService.close();
+  }
+
+  deleteData() {
+    this.closeModal();
+    this.crudService.delete(this.endpoint, this.identifier).subscribe({
+      next: () => {
+        this.deleteModalService.callback$.subscribe(callback => {
+          callback();
+        }).unsubscribe();
+      },
+      error: (error) => {
+        throw Error(`Failed to delete '${this.identifier}' at '${this.endpoint}':`, error);
+      },
+    });
   }
 }

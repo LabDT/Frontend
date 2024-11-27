@@ -44,7 +44,6 @@ export class CrudService {
     endpoint: string,
     id: number,
   ): Observable<any> {
-    let params = new HttpParams().set('id', id)
-    return this.http.delete(`${environment.backendUrl}/${endpoint}`);
+    return this.http.delete(`${environment.backendUrl}/${endpoint}/${id}`);
   }
 }
