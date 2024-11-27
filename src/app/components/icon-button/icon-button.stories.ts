@@ -24,6 +24,42 @@ export const Next: Story = {
   },
 };
 
+export const Edit: Story = {
+  args: {
+    variant: 'edit',
+  },
+};
+
+export const Delete: Story = {
+  args: {
+    variant: 'delete',
+  },
+};
+
+export const Add: Story = {
+  args: {
+    variant: 'add',
+  },
+};
+
+export const Primary: Story = {
+  args: {
+    color: 'primary',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    color: 'secondary',
+  },
+};
+
+export const Red: Story = {
+  args: {
+    color: 'red',
+  },
+};
+
 export const Small: Story = {
   args: {
     size: 'small',

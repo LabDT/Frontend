@@ -2,12 +2,20 @@
   <div>
     <div *ngIf="closeButton" class="close" (click)="onClose.emit($event); onCloseModal()"><fa-icon [icon]="iconClose"></fa-icon></div>
     <ng-content></ng-content>
-    <div *ngIf="cancelButton || okButton" class="interactions">
+    <div *ngIf="cancelButton || noButton || okButton || deleteButton" class="interactions">
       <div *ngIf="cancelButton">
         <app-button
           [label]="'cancel'"
           [fill]="true"
           (onClick)="onCancel.emit($event); onCloseModal()"
+        ></app-button>
+      </div>
+      <div *ngIf="noButton">
+        <app-button
+          [label]="'no'"
+          [fill]="true"
+          [variant]="'secondary'"
+          (onClick)="onNo.emit($event); onCloseModal()"
         ></app-button>
       </div>
       <div *ngIf="okButton">
@@ -16,6 +24,13 @@
           [variant]="'secondary'"
           [fill]="true"
           (onClick)="onOk.emit($event); onCloseModal()"
+        ></app-button>
+      </div>
+      <div *ngIf="deleteButton">
+        <app-button
+          [label]="'delete'"
+          [fill]="true"
+          (onClick)="onDelete.emit($event); onCloseModal()"
         ></app-button>
       </div>
     </div>

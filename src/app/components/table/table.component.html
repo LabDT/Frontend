@@ -1,0 +1,43 @@
+<div class="table-container">
+  <div class="table-header-container">
+    <app-input
+      [placeholder]="'future searching option'"
+      [variant]="'search'"
+    ></app-input>
+    <app-icon-button
+      [variant]="'add'"
+      [color]="'secondary'"
+      [size]="'large'"
+    ></app-icon-button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">
+          {{ column.title }}
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of rows; let rowIndex = index">
+        <td *ngFor="let column of columns">
+          {{ row[column.key] }}
+        </td>
+        <td>
+          <div class="actions-container">
+            <app-icon-button
+              [variant]="'edit'"
+              [color]="'secondary'"
+            ></app-icon-button>
+            <app-icon-button
+              [variant]="'delete'"
+              [color]="'red'"
+              (onClick)="onDelete(rowIndex)"
+            ></app-icon-button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

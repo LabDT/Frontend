@@ -1,1 +1,35 @@
-<p>dashboard-page works!</p>
+<app-delete-modal></app-delete-modal>
+<div>
+  <div class="dashboard-container">
+    <div class="navbar-container">
+      <div class="button-container">
+        <app-button
+          [label]="'Technique Categories'"
+          [fill]="true"
+          [variant]="current == 'categories' ? 'light' : 'primary'"
+        ></app-button>
+        <app-button
+          [label]="'Technique Locations'"
+          [fill]="true"
+          [variant]="current == 'locations' ? 'light' : 'primary'"
+        ></app-button>
+        <app-button
+          [label]="'Technique Materials'"
+          [fill]="true"
+          [variant]="current == 'materials' ? 'light' : 'primary'"
+        ></app-button>
+        <app-button
+          [label]="'Techniques'"
+          [fill]="true"
+          [variant]="current == 'techniques' ? 'light' : 'primary'"
+        ></app-button>
+      </div>
+    </div>
+    <div class="content-container">
+      <app-table
+        [columns]="columns"
+        [rows]="rows"
+      ></app-table>
+    </div>
+  </div>
+</div>

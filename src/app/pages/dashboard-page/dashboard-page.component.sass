@@ -1,0 +1,32 @@
+@use "../../../sass/colors" as *
+@use "../../../sass/fonts" as *
+@use "../../../sass/mixins" as *
+
+.dashboard-container
+  display: flex
+  flex-direction: row
+  max-width: 1920px
+  margin: 64px auto
+  gap: 20px
+
+.navbar-container
+  +drop-shadow-soft
+  display: flex
+  flex-direction: column
+  align-items: center
+  background-color: $color-secondary
+  width: 300px
+  height: 800px
+  border-radius: 35px
+  padding: 20px 10px
+
+.button-container
+  position: relative
+  display: flex
+  flex-direction: column
+  gap: 10px
+  margin: 0
+
+.content-container
+  width: 100%
+  height: auto

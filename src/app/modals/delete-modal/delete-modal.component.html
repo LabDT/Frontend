@@ -1,0 +1,11 @@
+<app-base-modal
+  [isActive]="isActive"
+  [closeButton]="true"
+  [noButton]="true"
+  [deleteButton]="true"
+  (onClose)="closeModal()"
+  (onNo)="closeModal()"
+  (onDelete)="onDelete.emit($event)"
+>
+  <p>Are you sure you want to delete <span>{{ what }}</span>?</p>
+</app-base-modal>

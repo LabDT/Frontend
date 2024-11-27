@@ -22,9 +22,17 @@ export class BaseModalComponent {
   @Input()
   closeButton: boolean = false;
 
+  /** Should it have a no button? */
+  @Input()
+  noButton: boolean = false;
+
   /** Should it have an ok button? */
   @Input()
   okButton: boolean = false;
+
+  /** Should it have a delete button? */
+  @Input()
+  deleteButton: boolean = false;
 
   /** Should it have a cancel button? */
   @Input()
@@ -37,6 +45,14 @@ export class BaseModalComponent {
   /** Optional ok handler */
   @Output()
   onOk = new EventEmitter<Event>();
+
+  /** Optional delete handler */
+  @Output()
+  onDelete = new EventEmitter<Event>();
+
+  /** Optional no handler */
+  @Output()
+  onNo = new EventEmitter<Event>();
 
   /** Optional cancel handler */
   @Output()

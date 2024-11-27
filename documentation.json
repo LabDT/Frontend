@@ -3,6 +3,90 @@
     "interfaces": [],
     "injectables": [
         {
+            "name": "ApiService",
+            "id": "injectable-ApiService-b64805b781acbeb13ef53cc75662ae639682459696c1b16baff7d8d81848203dc96772011e504f07f6d3c777c640d98bd4f3b49790bcfe5d0e3dd9700f700c6b",
+            "file": "src/app/services/api.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getWithParams",
+                    "args": [
+                        {
+                            "name": "endpoint",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "additional_params",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "endpoint",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "additional_params",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { HttpClient, HttpParams } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { environment } from '../../environments/environment';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class ApiService {\r\n\r\n  constructor(private http: HttpClient) { }\r\n\r\n  getWithParams(\r\n    endpoint: string,\r\n    additional_params: { [key: string]: any },\r\n  ): Observable<any> {\r\n    let params = new HttpParams();\r\n\r\n    Object.keys(additional_params).forEach((key) => {\r\n      if (additional_params[key] !== undefined && additional_params[key] !== null) {\r\n        params = params.set(key, additional_params[key]);\r\n      }\r\n    });\r\n\r\n    return this.http.get(`${environment.backendUrl}/${endpoint}`, { params });\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
             "name": "AuthService",
             "id": "injectable-AuthService-080eae937a4ff29e674a8ffc22638e16245a746b14991e4223cc1f13403252e2b3ad5e39f23fa28689b2344ffb63263674da4a5278255d0a4ad208f02747b43a",
             "file": "src/app/services/auth.service.ts",
@@ -438,7 +522,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-727e785bd66febef80c186b304752adb121dcc2071d0e9983e121464de19dcea67b78017fd36e0d44927dce5951266baad1dbf5e586ccb2d9e1f5698dfab20d5",
+            "id": "component-AppComponent-f1740920a456d26d02f4d3303d0baf630eb5928d742fd853e428b3d8da5ac5ceda42d28dd6b37e724f4540a2c95eedaf82d652514e251cba416a635e0ebc78cb",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -486,7 +570,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { Router, RouterOutlet } from '@angular/router';\r\nimport { CookieService } from 'ngx-cookie-service';\r\nimport { AuthService } from './services/auth.service';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  providers: [CookieService],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.sass'\r\n})\r\nexport class AppComponent {\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n    // this.authService.initializeAuth().then(() => {\r\n    //   if (this.authService.getsignedIn()) {\r\n    //     this.router.navigate(['dashboard']);\r\n    //   }\r\n    // });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { Router, RouterOutlet } from '@angular/router';\r\nimport { CookieService } from 'ngx-cookie-service';\r\nimport { AuthService } from './services/auth.service';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  providers: [CookieService],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.sass'\r\n})\r\nexport class AppComponent {\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  ngOnInit(): void {\r\n    this.authService.initializeAuth().then(() => {\r\n      if (this.authService.signedIn) {\r\n        this.router.navigate(['dashboard']);\r\n      }\r\n    });\r\n  }\r\n}\r\n",
             "styleUrl": "./app.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -687,7 +771,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-3a0701e4dc2f3b9ca24ee04210804491f86886a982c52121c693300aafeb9cbe1b88fd27eecc53da9974982ee22766bdf2496aeeee80972bcbccd0b938330af5",
+            "id": "component-ButtonComponent-39a182c3637ec89fcb2304dac521f47e8a75547bb719a826213511369ba69f1f2116730321aa11dd7a30884c7fa8fd6b724cab7307cc8897b19405e5dc7ac8d4",
             "file": "src/app/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -710,7 +794,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nFill all available content with the button",
                     "description": "<p>Fill all available content with the button</p>\n",
-                    "line": 27,
+                    "line": 28,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -721,16 +805,16 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 735,
-                            "end": 749,
+                            "pos": 739,
+                            "end": 753,
                             "kind": 327,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 736,
-                                "end": 744,
+                                "pos": 740,
+                                "end": 748,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -740,9 +824,9 @@
                             "comment": ""
                         }
                     ],
-                    "rawdescription": "\n\nButton contents\n\n",
-                    "description": "<p>Button contents</p>\n",
-                    "line": 35,
+                    "rawdescription": "\n\nButton content\n\n",
+                    "description": "<p>Button content</p>\n",
+                    "line": 36,
                     "type": "string",
                     "decorators": []
                 },
@@ -753,7 +837,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nHow large should the button be?",
                     "description": "<p>How large should the button be?</p>\n",
-                    "line": 23,
+                    "line": 24,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 },
@@ -777,7 +861,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional click handler",
                     "description": "<p>Optional click handler</p>\n",
-                    "line": 39,
+                    "line": 40,
                     "type": "EventEmitter"
                 }
             ],
@@ -797,7 +881,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './button.component.html',\r\n  styleUrl: './button.component.sass'\r\n})\r\nexport class ButtonComponent {\r\n  /** Styling variant of the button */\r\n  @Input()\r\n  variant: 'primary'\r\n    | 'secondary'\r\n    | 'light'\r\n    | 'header'\r\n    | 'minimalist'\r\n    = 'primary';\r\n\r\n  /** How large should the button be? */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /** Fill all available content with the button */\r\n  @Input()\r\n  fill: boolean = false;\r\n\r\n  /**\r\n   * Button contents\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    let classes = ['button', this.size, this.variant];\r\n    if (this.fill) {\r\n      classes.push('fill');\r\n    }\r\n    return classes;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './button.component.html',\r\n  styleUrl: './button.component.sass'\r\n})\r\nexport class ButtonComponent {\r\n  /** Styling variant of the button */\r\n  @Input()\r\n  variant:\r\n    'primary'\r\n    | 'secondary'\r\n    | 'light'\r\n    | 'header'\r\n    | 'minimalist'\r\n    = 'primary';\r\n\r\n  /** How large should the button be? */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /** Fill all available content with the button */\r\n  @Input()\r\n  fill: boolean = false;\r\n\r\n  /**\r\n   * Button content\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    let classes = ['button', this.size, this.variant];\r\n    if (this.fill) {\r\n      classes.push('fill');\r\n    }\r\n    return classes;\r\n  }\r\n}\r\n",
             "styleUrl": "./button.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -810,7 +894,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 41
+                        "line": 42
                     }
                 }
             },
@@ -818,7 +902,7 @@
         },
         {
             "name": "DashboardPageComponent",
-            "id": "component-DashboardPageComponent-3aaf1e3e6a74df1fbb130607cc010aa333e248575a96ad05898067dcc95b7fe48b87516b64dc7374b07372da0cfb40b3331414226c360a45dab932bc4a78ec8c",
+            "id": "component-DashboardPageComponent-edbf9b686fa579a5302762fe0db150b96bee0b72f10c41cce2e3a7eaec3172757223e5828cfc70652b25a465d2203032e00c88c822ebcb51aebe465bf94c17b6",
             "file": "src/app/pages/dashboard-page/dashboard-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -835,24 +919,108 @@
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "columns",
+                    "defaultValue": "[\r\n    { key: 'name', title: 'Name' }\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
+                {
+                    "name": "current",
+                    "defaultValue": "'categories'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"categories\" | \"locations\" | \"materials\" | \"techniques\"",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "rows",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [],
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "TableComponent",
+                    "type": "component"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-dashboard-page',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './dashboard-page.component.html',\r\n  styleUrl: './dashboard-page.component.sass'\r\n})\r\nexport class DashboardPageComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { ButtonComponent } from \"../../components/button/button.component\";\r\nimport { TableComponent } from \"../../components/table/table.component\";\r\nimport { CommonModule } from '@angular/common';\r\nimport { ApiService } from '../../services/api.service';\r\n\r\n@Component({\r\n  selector: 'app-dashboard-page',\r\n  standalone: true,\r\n  imports: [CommonModule, ButtonComponent, TableComponent],\r\n  templateUrl: './dashboard-page.component.html',\r\n  styleUrl: './dashboard-page.component.sass'\r\n})\r\nexport class DashboardPageComponent {\r\n\r\n  constructor(private apiService: ApiService) { }\r\n\r\n  current:\r\n    'categories'\r\n    | 'locations'\r\n    | 'materials'\r\n    | 'techniques'\r\n    = 'categories';\r\n\r\n  columns = [\r\n    { key: 'name', title: 'Name' }\r\n  ];\r\n\r\n  rows: any[] = [];\r\n\r\n  ngOnInit(): void {\r\n    this.apiService.getWithParams('technique-category/list', {}).subscribe({\r\n      next: (data) => {\r\n        console.log(data);\r\n        this.rows = data.categories;\r\n      },\r\n      error: (e) => {\r\n        console.error(e);\r\n      },\r\n    });\r\n  }\r\n}\r\n",
             "styleUrl": "./dashboard-page.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "apiService",
+                        "type": "ApiService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "apiService",
+                        "type": "ApiService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<p>dashboard-page works!</p>\r\n"
+            "templateData": "<div>\r\n  <div class=\"dashboard-container\">\r\n    <div class=\"navbar-container\">\r\n      <div class=\"button-container\">\r\n        <app-button\r\n          [label]=\"'Technique Categories'\"\r\n          [fill]=\"true\"\r\n          [variant]=\"current == 'categories' ? 'light' : 'primary'\"\r\n        ></app-button>\r\n        <app-button\r\n          [label]=\"'Technique Locations'\"\r\n          [fill]=\"true\"\r\n          [variant]=\"current == 'locations' ? 'light' : 'primary'\"\r\n        ></app-button>\r\n        <app-button\r\n          [label]=\"'Technique Materials'\"\r\n          [fill]=\"true\"\r\n          [variant]=\"current == 'materials' ? 'light' : 'primary'\"\r\n        ></app-button>\r\n        <app-button\r\n          [label]=\"'Techniques'\"\r\n          [fill]=\"true\"\r\n          [variant]=\"current == 'techniques' ? 'light' : 'primary'\"\r\n        ></app-button>\r\n      </div>\r\n    </div>\r\n    <div class=\"content-container\">\r\n      <app-table\r\n        [columns]=\"columns\"\r\n        [rows]=\"rows\"\r\n      ></app-table>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "HeaderComponent",
@@ -940,7 +1108,7 @@
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-7c39fd5d99c6e1df058a889646b6a154a1732f79fc551ac97214dd925e6e8d74027884934aa8206006f1374c259dfba01192edb1d3195d50bc3f02836105aaeb",
+            "id": "component-HomeComponent-fdac934533c6f1e5681e67abcb69dda8e953890549b3585fc030d9907c7f358eff6359fd89de1a2ec6e280e1698b8eacd73ff58d12c170de6da8eaf90d76489e",
             "file": "src/app/pages/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -958,7 +1126,18 @@
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "onSearch",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -976,22 +1155,194 @@
                 {
                     "name": "RegisterModalComponent",
                     "type": "component"
+                },
+                {
+                    "name": "InputComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { HeaderComponent } from \"../../components/header/header.component\";\r\nimport { LoginModalComponent } from \"../../modals/login-modal/login-modal.component\";\r\nimport { RegisterModalComponent } from \"../../modals/register-modal/register-modal.component\";\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  standalone: true,\r\n  imports: [HeaderComponent, LoginModalComponent, RegisterModalComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.sass'\r\n})\r\nexport class HomeComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { HeaderComponent } from \"../../components/header/header.component\";\r\nimport { LoginModalComponent } from \"../../modals/login-modal/login-modal.component\";\r\nimport { RegisterModalComponent } from \"../../modals/register-modal/register-modal.component\";\r\nimport { InputComponent } from \"../../components/input/input.component\";\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  standalone: true,\r\n  imports: [HeaderComponent, LoginModalComponent, RegisterModalComponent, InputComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.sass'\r\n})\r\nexport class HomeComponent {\r\n  onSearch() {\r\n\r\n  }\r\n}\r\n",
             "styleUrl": "./home.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div>\r\n  <app-login-modal></app-login-modal>\r\n  <app-register-modal></app-register-modal>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <div class=\"app-header-container\">\r\n    <app-header></app-header>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <app-login-modal></app-login-modal>\r\n  <app-register-modal></app-register-modal>\r\n  <img src=\"/images/blob_01.svg\" alt=\"Blob 01\" class=\"blob-01\">\r\n  <img src=\"/images/blob_02.svg\" alt=\"Blob 02\" class=\"blob-02\">\r\n  <div class=\"home-container\">\r\n    <div class=\"header-container\">\r\n      <app-header></app-header>\r\n    </div>\r\n    <div class=\"search-container\">\r\n      <p>The <span class=\"bold primary\">DT technique</span> you're searching for is <span class=\"bold secondary\">right here.</span></p>\r\n      <app-input\r\n        [variant]=\"'search'\"\r\n        (onClick)=\"onSearch()\"\r\n      >\r\n      </app-input>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "IconButtonComponent",
+            "id": "component-IconButtonComponent-d172e1164f29935fdef059388560bf59abee2f4e3efa6c7cb0b360e59a206c24a224707c3e26b10fc6368adb2195506bbdab82d85c8d1f4d890992472b6f3ccc",
+            "file": "src/app/components/icon-button/icon-button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-icon-button",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./icon-button.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "'primary'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nBackground color of the button",
+                    "description": "<p>Background color of the button</p>\n",
+                    "line": 36,
+                    "type": "\"primary\" | \"secondary\" | \"red\"",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nHow large should the button be?",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 32,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "'search'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyling variant of the button",
+                    "description": "<p>Styling variant of the button</p>\n",
+                    "line": 22,
+                    "type": "\"search\" | \"next\" | \"edit\" | \"delete\" | \"add\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional click handler",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 44,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "iconAdd",
+                    "defaultValue": "faPlus",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "iconDelete",
+                    "defaultValue": "faTrashCan",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "iconEdit",
+                    "defaultValue": "faPencil",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "iconNext",
+                    "defaultValue": "faChevronRight",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "iconSearch",
+                    "defaultValue": "faSearch",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FontAwesomeModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { FontAwesomeModule, IconDefinition } from '@fortawesome/angular-fontawesome';\r\nimport { faChevronRight, faPencil, faPlus, faSearch, faTrashCan } from '@fortawesome/free-solid-svg-icons';\r\n\r\n@Component({\r\n  selector: 'app-icon-button',\r\n  standalone: true,\r\n  imports: [CommonModule, FontAwesomeModule],\r\n  templateUrl: './icon-button.component.html',\r\n  styleUrl: './icon-button.component.sass'\r\n})\r\nexport class IconButtonComponent {\r\n  iconSearch = faSearch;\r\n  iconNext = faChevronRight;\r\n  iconEdit = faPencil;\r\n  iconDelete = faTrashCan;\r\n  iconAdd = faPlus;\r\n\r\n  /** Styling variant of the button */\r\n  @Input()\r\n  variant:\r\n    'search'\r\n    | 'next'\r\n    | 'edit'\r\n    | 'delete'\r\n    | 'add'\r\n    = 'search';\r\n\r\n  /** How large should the button be? */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /** Background color of the button */\r\n  @Input()\r\n  color:\r\n    'primary'\r\n    | 'secondary'\r\n    | 'red'\r\n    = 'primary';\r\n\r\n  /** Optional click handler */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    return ['icon-button', this.size, this.variant, this.color];\r\n  }\r\n\r\n  public get icon(): IconDefinition {\r\n    switch (this.variant) {\r\n      case 'search':\r\n        return this.iconSearch;\r\n      case 'next':\r\n        return this.iconNext;\r\n        case 'edit':\r\n          return this.iconEdit;\r\n      case 'delete':\r\n        return this.iconDelete;\r\n      case 'add':\r\n        return this.iconAdd;\r\n    }\r\n  }\r\n}\r\n",
+            "styleUrl": "./icon-button.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 46
+                    }
+                },
+                "icon": {
+                    "name": "icon",
+                    "getSignature": {
+                        "name": "icon",
+                        "type": "",
+                        "returnType": "IconDefinition",
+                        "line": 50
+                    }
+                }
+            },
+            "templateData": "<button\r\n  type=\"button\"\r\n  (click)=\"onClick.emit($event)\"\r\n  [ngClass]=\"classes\"\r\n>\r\n  <fa-icon [icon]=\"icon\"></fa-icon>\r\n</button>\r\n"
         },
         {
             "name": "InputComponent",
-            "id": "component-InputComponent-3371026e4c72d89d18ac08e5f2609b086a10c3f52f0c4e72361dc65d05749d175f6dd2d6edafff111179fc46911c8b8e3ad6e0c1b2a9d9388e124df5836703e6",
+            "id": "component-InputComponent-33070564ea9af858bb1c656c2769910e73977fa668e1b40db54d3095b97bd194bdd1009ebf1d3028f609333745c6976f29e57d5a940147db04f34983b3bc0e2d",
             "file": "src/app/components/input/input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1014,7 +1365,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional label",
                     "description": "<p>Optional label</p>\n",
-                    "line": 19,
+                    "line": 20,
                     "type": "string",
                     "decorators": []
                 },
@@ -1025,7 +1376,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nOptional placeholder",
                     "description": "<p>Optional placeholder</p>\n",
-                    "line": 23,
+                    "line": 24,
                     "type": "string",
                     "decorators": []
                 },
@@ -1036,12 +1387,23 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nInput variant",
                     "description": "<p>Input variant</p>\n",
-                    "line": 15,
+                    "line": 16,
                     "type": "\"text\" | \"email\" | \"password\" | \"search\"",
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nOptional button click handler\n\nOnly gets called if the selected variant has a button\n",
+                    "description": "<p>Optional button click handler</p>\n<p>Only gets called if the selected variant has a button</p>\n",
+                    "line": 31,
+                    "type": "EventEmitter"
+                }
+            ],
             "propertiesClass": [
                 {
                     "name": "inputId",
@@ -1052,7 +1414,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 34
                 }
             ],
             "methodsClass": [],
@@ -1065,12 +1427,16 @@
                 {
                     "name": "CommonModule",
                     "type": "module"
+                },
+                {
+                    "name": "IconButtonComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { v4 as uuidv4 } from 'uuid';\r\n\r\n@Component({\r\n  selector: 'app-input',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './input.component.html',\r\n  styleUrl: './input.component.sass'\r\n})\r\nexport class InputComponent {\r\n  /** Input variant */\r\n  @Input()\r\n  variant: 'text' | 'email' | 'password'| 'search' = 'text';\r\n\r\n  /** Optional label */\r\n  @Input()\r\n  label: string = '';\r\n\r\n  /** Optional placeholder */\r\n  @Input()\r\n  placeholder: string = '';\r\n\r\n  // Uniquely generated ID for the instance\r\n  inputId: string = `input-${uuidv4()}`;\r\n\r\n  public get classes(): string[] {\r\n    return ['labdt-input']\r\n  }\r\n\r\n  public get type(): string {\r\n    switch (this.variant) {\r\n      case 'text':\r\n        return 'text';\r\n      case 'email':\r\n        return 'email';\r\n      case 'password':\r\n        return 'password';\r\n      case 'search':\r\n        return 'text';\r\n      default:\r\n        return 'text';\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { v4 as uuidv4 } from 'uuid';\r\nimport { IconButtonComponent } from '../icon-button/icon-button.component';\r\n\r\n@Component({\r\n  selector: 'app-input',\r\n  standalone: true,\r\n  imports: [CommonModule, IconButtonComponent],\r\n  templateUrl: './input.component.html',\r\n  styleUrl: './input.component.sass'\r\n})\r\nexport class InputComponent {\r\n  /** Input variant */\r\n  @Input()\r\n  variant: 'text' | 'email' | 'password'| 'search' = 'text';\r\n\r\n  /** Optional label */\r\n  @Input()\r\n  label: string = '';\r\n\r\n  /** Optional placeholder */\r\n  @Input()\r\n  placeholder: string = '';\r\n\r\n  /** Optional button click handler\r\n   *\r\n   * Only gets called if the selected variant has a button\r\n   */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  // Uniquely generated ID for the instance\r\n  inputId: string = `input-${uuidv4()}`;\r\n\r\n  get classes(): string[] {\r\n    return ['labdt-input']\r\n  }\r\n\r\n  get type(): string {\r\n    switch (this.variant) {\r\n      case 'text':\r\n        return 'text';\r\n      case 'email':\r\n        return 'email';\r\n      case 'password':\r\n        return 'password';\r\n      case 'search':\r\n        return 'text';\r\n      default:\r\n        return 'text';\r\n    }\r\n  }\r\n\r\n  get button(): 'search' | null {\r\n    switch (this.variant) {\r\n      case 'search':\r\n        return 'search';\r\n      default:\r\n        return null;\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./input.component.sass",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1083,7 +1449,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 28
+                        "line": 36
                     }
                 },
                 "type": {
@@ -1092,11 +1458,20 @@
                         "name": "type",
                         "type": "string",
                         "returnType": "string",
-                        "line": 32
+                        "line": 40
+                    }
+                },
+                "button": {
+                    "name": "button",
+                    "getSignature": {
+                        "name": "button",
+                        "type": "",
+                        "returnType": "\"search\" | null",
+                        "line": 55
                     }
                 }
             },
-            "templateData": "<div [ngClass]=\"classes\">\r\n  <label *ngIf=\"label\" [for]=\"inputId\">{{ label }}</label>\r\n  <input [id]=\"inputId\" [placeholder]=\"placeholder\" [type]=\"type\">\r\n</div>\r\n"
+            "templateData": "<div [ngClass]=\"classes\">\r\n  <label *ngIf=\"label\" [for]=\"inputId\">{{ label }}</label>\r\n  <input [id]=\"inputId\" [placeholder]=\"placeholder\" [type]=\"type\">\r\n  <div *ngIf=\"button\" class=\"icon-button-container\">\r\n    <app-icon-button\r\n      [variant]=\"button\"\r\n      [size]=\"'large'\"\r\n      (onClick)=\"onClick.emit($event)\"\r\n    ></app-icon-button>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "LoginComponent",
@@ -1752,6 +2127,80 @@
             },
             "extends": [],
             "templateData": "<app-base-modal\r\n  [isActive]=\"isActive\"\r\n  [closeButton]=\"true\"\r\n  (onClose)=\"closeModal()\"\r\n>\r\n  <app-logo></app-logo>\r\n  <h1 class=\"header\">\r\n    Sign up to continue\r\n  </h1>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'email'\"\r\n      [label]=\"'Email'\"\r\n      [placeholder]=\"'your.email@mail.com'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-input\r\n      [variant]=\"'password'\"\r\n      [label]=\"'Password confirmation'\"\r\n    ></app-input>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <app-button\r\n      [variant]=\"'primary'\"\r\n      [label]=\"'Sign Up'\"\r\n      [fill]=\"true\"\r\n    ></app-button>\r\n  </div>\r\n  <span class=\"or\">\r\n    OR\r\n  </span>\r\n  <div class=\"expander\">\r\n    <app-register></app-register>\r\n  </div>\r\n  <div class=\"expander\">\r\n    <p class=\"tos\">\r\n      By continuing you agree to LabDT’s <span class=\"highlight\">Terms of Service</span> and acknowledge you’ve read our <span class=\"highlight\">Privacy Policy</span>.\r\n    </p>\r\n    <p class=\"tos\">\r\n       <p>\r\n    <hr>\r\n    <p class=\"sign-up\" (click)=\"openLoginModal()\">\r\n      Already on LabDT? Sign in\r\n    </p>\r\n  </div>\r\n</app-base-modal>\r\n"
+        },
+        {
+            "name": "TableComponent",
+            "id": "component-TableComponent-9e8bd13deb9b40f610042e419f9a37421bd74baff9da4210e3ed71f3f234fe7f8cc316b3032c482e38d4dec3edc106502853f75639fe45fdd7adc00acd7c74b7",
+            "file": "src/app/components/table/table.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-table",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./table.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "columns",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nArray of columns",
+                    "description": "<p>Array of columns</p>\n",
+                    "line": 17,
+                    "type": "literal type[]",
+                    "decorators": []
+                },
+                {
+                    "name": "rows",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nArray of inputs",
+                    "description": "<p>Array of inputs</p>\n",
+                    "line": 21,
+                    "type": "any[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "IconButtonComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "InputComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input } from '@angular/core';\r\nimport { IconButtonComponent } from \"../icon-button/icon-button.component\";\r\nimport { InputComponent } from \"../input/input.component\";\r\nimport { ButtonComponent } from \"../button/button.component\";\r\n\r\n@Component({\r\n  selector: 'app-table',\r\n  standalone: true,\r\n  imports: [CommonModule, IconButtonComponent, InputComponent],\r\n  templateUrl: './table.component.html',\r\n  styleUrl: './table.component.sass'\r\n})\r\nexport class TableComponent {\r\n  /** Array of columns */\r\n  @Input()\r\n  columns: { key: string; title: string }[] = [];\r\n\r\n  /** Array of inputs */\r\n  @Input()\r\n  rows: any[] = [];\r\n}\r\n",
+            "styleUrl": "./table.component.sass",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"table-container\">\r\n  <div class=\"table-header-container\">\r\n    <app-input\r\n      [placeholder]=\"'future searching option'\"\r\n    ></app-input>\r\n    <app-icon-button\r\n      [variant]=\"'add'\"\r\n      [color]=\"'secondary'\"\r\n      [size]=\"'large'\"\r\n    ></app-icon-button>\r\n  </div>\r\n  <table>\r\n    <thead>\r\n      <tr>\r\n        <th *ngFor=\"let column of columns\">\r\n          {{ column.title }}\r\n        </th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let row of rows\">\r\n        <td *ngFor=\"let column of columns\">\r\n          {{ row[column.key] }}\r\n        </td>\r\n        <td>\r\n          <div class=\"actions-container\">\r\n            <app-icon-button\r\n              [variant]=\"'edit'\"\r\n              [color]=\"'secondary'\"\r\n            ></app-icon-button>\r\n            <app-icon-button\r\n              [variant]=\"'delete'\"\r\n              [color]=\"'red'\"\r\n            ></app-icon-button>\r\n          </div>\r\n        </td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n"
         }
     ],
     "modules": [],
@@ -1965,7 +2414,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 17,
+        "count": 20,
         "status": "low",
         "files": [
             {
@@ -2026,12 +2475,21 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/icon-button/icon-button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconButtonComponent",
+                "coveragePercent": 40,
+                "coverageCount": "4/10",
+                "status": "medium"
+            },
+            {
                 "filePath": "src/app/components/input/input.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "InputComponent",
-                "coveragePercent": 60,
-                "coverageCount": "3/5",
+                "coveragePercent": 66,
+                "coverageCount": "4/6",
                 "status": "good"
             },
             {
@@ -2060,6 +2518,15 @@
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
                 "status": "low"
+            },
+            {
+                "filePath": "src/app/components/table/table.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TableComponent",
+                "coveragePercent": 66,
+                "coverageCount": "2/3",
+                "status": "good"
             },
             {
                 "filePath": "src/app/guards/auth.guard.ts",
@@ -2114,7 +2581,7 @@
                 "linktype": "component",
                 "name": "DashboardPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -2123,7 +2590,16 @@
                 "linktype": "component",
                 "name": "HomeComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/api.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ApiService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {

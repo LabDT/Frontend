@@ -15,10 +15,10 @@ export class AppComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.authService.initializeAuth().then(() => {
-    //   if (this.authService.getsignedIn()) {
-    //     this.router.navigate(['dashboard']);
-    //   }
-    // });
+    this.authService.initializeAuth().then(() => {
+      if (this.authService.signedIn) {
+        this.router.navigate(['dashboard']);
+      }
+    });
   }
 }
