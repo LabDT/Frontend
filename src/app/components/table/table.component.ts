@@ -13,17 +13,52 @@ import { CrudService } from '../../services/crud.service';
   styleUrl: './table.component.sass'
 })
 export class TableComponent {
-  /** Array of columns */
+  /** Endpoint where the data is */
   @Input()
+  endpoint: string = '';
+
+  /** Model descriptor for the data */
+  model: any[] = [];
+
+  /** Array of columns */
   columns: { key: string; title: string }[] = [];
 
   /** Array of inputs */
-  @Input()
   rows: any[] = [];
 
   constructor(
     private deleteModalService: DeleteModalService,
+    private crudService: CrudService,
   ) { }
+
+  ngOnInit() {
+    // Retrieve model
+    this.crudService.model(this.endpoint).subscribe({
+      next: (data) => {
+        this.model = data;
+        this.model.forEach(model => {
+          this.columns.push({
+            key: model.name,
+            title: model.name,
+          });
+        });
+      },
+      error: (error) => {
+        throw Error(`Failed to fetch model for ${this.endpoint}:`, error);
+      },
+    });
+    // Retrieve data
+    this.crudService.read(this.endpoint).subscribe({
+      next: (data) => {
+        data.entries.forEach((data: any) => {
+          this.rows.push(data);
+        });
+      },
+      error: (error) => {
+        throw Error(`Failed to fetch data for ${this.endpoint}:`, error);
+      },
+    })
+  }
 
   onDelete(rowIndex: number) {
     this.deleteModalService.open(this.rows[rowIndex].name);

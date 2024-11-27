@@ -34,10 +34,18 @@ export class DashboardPageComponent {
   rows: any[] = [];
 
   ngOnInit(): void {
-    this.crudService.get('technique-category/list').subscribe({
+    this.crudService.read('technique-category').subscribe({
       next: (data) => {
         console.log(data);
         this.rows = data.categories;
+      },
+      error: (e) => {
+        console.error(e);
+      },
+    });
+    this.crudService.model('technique-category').subscribe({
+      next: (data) => {
+        console.log(data);
       },
       error: (e) => {
         console.error(e);
